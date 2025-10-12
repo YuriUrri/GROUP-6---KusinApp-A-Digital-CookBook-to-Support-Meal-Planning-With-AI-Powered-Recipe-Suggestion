@@ -80,10 +80,7 @@ namespace KusinApp
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
 
 
@@ -92,13 +89,14 @@ namespace KusinApp
 
             string ingredient = searchBox.Text.Trim();
             string userID = help.GetUserID(login.GetUser(), login.GetPass());
+            string quantity = ingCountIncrementer.Value.ToString();
 
             if (!string.IsNullOrEmpty(ingredient))
             {
                 string ingredientID = GetIngredientID(ingredient);
 
-                insertIngredient(ingredient, ingredientID, userID);
-                itemList.Items.Add($"{ingredientID} - {ingredient}");
+                insertIngredient(ingredient, ingredientID, userID, quantity);
+                itemList.Items.Add($"{quantity} - {ingredient}");
 
             }
             else
@@ -127,9 +125,10 @@ namespace KusinApp
 
             return id;
         }
-        private void insertIngredient(string ingredient, string ingredientID, string userID)
+        private void insertIngredient(string ingredient, string ingredientID, string userID, string quantity)
         {
-            string query = "INSERT INTO `user_inventory`(`user_id`,`ingredient_id`, `ingredient_name`) VALUES (@U_id,@I_id,@I_name)";
+            string query = "INSERT INTO `user_inventory`(`user_id`,`ingredient_id`, `ingredient_name`, `ingredient_quantity`)" +
+                " VALUES (@U_id,@I_id,@I_name,@I_quantity)";
             MySqlConnection conn = new MySqlConnection(strConn);
             try
             {
@@ -140,6 +139,7 @@ namespace KusinApp
                 cmd.Parameters.AddWithValue("@U_id", userID);
                 cmd.Parameters.AddWithValue("@I_name", ingredient);
                 cmd.Parameters.AddWithValue("@I_id", ingredientID);
+                cmd.Parameters.AddWithValue("@I_quantity", quantity);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Ingredient added successfully!");
                 searchBox.Clear();
@@ -174,6 +174,11 @@ namespace KusinApp
             LoginPage login = new LoginPage();
             login.Show();
             this.Hide();
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
 
         }
     }

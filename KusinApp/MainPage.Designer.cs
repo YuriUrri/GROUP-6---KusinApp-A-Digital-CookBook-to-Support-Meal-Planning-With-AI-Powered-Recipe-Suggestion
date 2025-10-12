@@ -45,6 +45,8 @@ namespace KusinApp
             recipesImageList = new ImageList(components);
             suggestionBox = new ListBox();
             button4 = new Button();
+            ingCountIncrementer = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)ingCountIncrementer).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -64,7 +66,7 @@ namespace KusinApp
             searchBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             searchBox.Location = new Point(12, 109);
             searchBox.Name = "searchBox";
-            searchBox.Size = new Size(231, 23);
+            searchBox.Size = new Size(175, 23);
             searchBox.TabIndex = 1;
             searchBox.TextChanged += textBox1_TextChanged;
             // 
@@ -177,11 +179,20 @@ namespace KusinApp
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click_1;
             // 
+            // ingCountIncrementer
+            // 
+            ingCountIncrementer.Location = new Point(193, 109);
+            ingCountIncrementer.Name = "ingCountIncrementer";
+            ingCountIncrementer.Size = new Size(58, 23);
+            ingCountIncrementer.TabIndex = 13;
+            ingCountIncrementer.ValueChanged += numericUpDown1_ValueChanged;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(344, 590);
+            Controls.Add(ingCountIncrementer);
             Controls.Add(button4);
             Controls.Add(recipeSuggestionBox);
             Controls.Add(label2);
@@ -198,6 +209,7 @@ namespace KusinApp
             StartPosition = FormStartPosition.CenterScreen;
             Text = "KusinApp";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)ingCountIncrementer).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -217,5 +229,6 @@ namespace KusinApp
         private ImageList recipesImageList;
         private ListBox suggestionBox;
         private Button button4;
+        private NumericUpDown ingCountIncrementer;
     }
 }
