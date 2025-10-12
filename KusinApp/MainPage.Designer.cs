@@ -44,6 +44,7 @@ namespace KusinApp
             recipeSuggestionBox = new ListView();
             recipesImageList = new ImageList(components);
             suggestionBox = new ListBox();
+            button4 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -166,11 +167,22 @@ namespace KusinApp
             suggestionBox.Visible = false;
             suggestionBox.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
+            // button4
+            // 
+            button4.Location = new Point(224, 526);
+            button4.Name = "button4";
+            button4.Size = new Size(96, 23);
+            button4.TabIndex = 12;
+            button4.Text = "Back To Login";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click_1;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(344, 590);
+            Controls.Add(button4);
             Controls.Add(recipeSuggestionBox);
             Controls.Add(label2);
             Controls.Add(Addlabel);
@@ -204,5 +216,6 @@ namespace KusinApp
         private ListView recipeSuggestionBox;
         private ImageList recipesImageList;
         private ListBox suggestionBox;
+        private Button button4;
     }
 }

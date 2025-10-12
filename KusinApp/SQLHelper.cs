@@ -114,6 +114,49 @@ namespace KusinApp
            
         }
 
+        public string GetUserID(string username, string password)
+        {
+        string query = @"
+        SELECT user_id 
+        FROM user_login 
+        WHERE LOWER(TRIM(username)) = LOWER(TRIM(@username)) 
+        AND TRIM(password) = TRIM(@password)
+        LIMIT 1";
+
+            string userId = string.Empty;
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username.Trim());
+                        cmd.Parameters.AddWithValue("@password", password.Trim());
+
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            userId = result.ToString();
+                            
+                        }
+                        else
+                        {
+                            MessageBox.Show($"❌ No user found.\nUsername: {username}\nPassword: {password}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching user ID: " + ex.Message);
+            }
+
+            return userId;
+        }
+
         internal void executeNonQuery(string insertQuery)
         {
             try

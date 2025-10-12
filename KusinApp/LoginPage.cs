@@ -14,6 +14,9 @@ namespace KusinApp
     {
         SQLHelper help = new SQLHelper();
         string SQL = "";
+        public static string LoggedInUser { get; private set; }
+        public static string LoggedInPass { get; private set; }
+        public static string LoggedInId { get; private set; }
         public LoginPage()
         {
             InitializeComponent();
@@ -59,9 +62,12 @@ namespace KusinApp
             {
                 if (help.ValidateLogin(username, password))
                 {
+                    LoggedInUser = username;
+                    LoggedInPass = password;
+                    LoggedInId = help.GetUserID(username,password);
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                    
-
+                    
                     MainPage mainForm = new MainPage();
                     mainForm.Show();
                     this.DialogResult = DialogResult.OK;
@@ -80,7 +86,20 @@ namespace KusinApp
             
         }
 
-        
+        public string GetID()
+        {
+            return LoggedInId;
+        }
+        public string GetUser()
+        {
+            return LoggedInUser;
+        }
+        public string GetPass()
+        {
+            return LoggedInPass;
+        }
+
+
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
