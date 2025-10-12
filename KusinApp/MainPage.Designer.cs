@@ -183,6 +183,7 @@ namespace KusinApp
             Controls.Add(searchBox);
             Controls.Add(label1);
             Name = "MainPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "KusinApp";
             Load += Form1_Load;
             ResumeLayout(false);
