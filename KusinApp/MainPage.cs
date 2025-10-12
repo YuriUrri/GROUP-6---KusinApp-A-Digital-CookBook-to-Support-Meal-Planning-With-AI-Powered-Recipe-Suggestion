@@ -17,8 +17,34 @@ namespace KusinApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadUserInventory();
             SetupAutoComplete();
+            help.dbConnection();
+            
+            
+            
+            
         }
+        private void LoadUserInventory()
+        {
+            string userID = login.GetID();
+            if (string.IsNullOrEmpty(userID))
+            {
+                MessageBox.Show("User ID not found. Please log in again.");
+                return;
+            }
+
+            DataTable dt = help.GetUserInventory(userID);
+            itemList.Items.Clear();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string name = row["ingredient_name"].ToString();
+                string qty = row["ingredient_quantity"].ToString();
+                itemList.Items.Add($"{qty} - {name}");
+            }
+        }
+
 
         private void SetupAutoComplete()
         {
@@ -86,73 +112,99 @@ namespace KusinApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-
             string ingredient = searchBox.Text.Trim();
             string userID = help.GetUserID(login.GetUser(), login.GetPass());
             string quantity = ingCountIncrementer.Value.ToString();
 
-            if (!string.IsNullOrEmpty(ingredient))
+            if (string.IsNullOrEmpty(userID))
             {
-                string ingredientID = GetIngredientID(ingredient);
-
-                insertIngredient(ingredient, ingredientID, userID, quantity);
-                itemList.Items.Add($"{quantity} - {ingredient}");
-
+                MessageBox.Show("User not found. Please log in again.");
+                return;
             }
-            else
+
+            if (quantity == "0")
+            {
+                MessageBox.Show("Please enter a quantity greater than zero.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(ingredient))
             {
                 MessageBox.Show("Please enter an ingredient name.");
+                return;
             }
 
+            
+            string ingredientID = GetIngredientID(ingredient);
+
+            if (string.IsNullOrEmpty(ingredientID))
+            {
+                MessageBox.Show($"The ingredient '{ingredient}' was not found.\nPlease select a valid ingredient.");
+                return;
+            }
+
+            
+            insertIngredient(ingredient, ingredientID, userID, quantity);
+            LoadUserInventory();
         }
+
 
         private string GetIngredientID(string ingredientName)
         {
             string query = "SELECT ingredient_id FROM ingredient_list WHERE ingredient_name = @name LIMIT 1";
-            string id = "";
+            string id = string.Empty;
 
-            using (MySqlConnection conn = new MySqlConnection(strConn))
+            try
             {
-                conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    cmd.Parameters.AddWithValue("@name", ingredientName);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        id = result.ToString();
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", ingredientName);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                            id = result.ToString();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking ingredient: " + ex.Message);
             }
 
             return id;
         }
         private void insertIngredient(string ingredient, string ingredientID, string userID, string quantity)
         {
-            string query = "INSERT INTO `user_inventory`(`user_id`,`ingredient_id`, `ingredient_name`, `ingredient_quantity`)" +
-                " VALUES (@U_id,@I_id,@I_name,@I_quantity)";
-            MySqlConnection conn = new MySqlConnection(strConn);
+            string query = @"INSERT INTO user_inventory (user_id, ingredient_id, ingredient_name, ingredient_quantity)
+                     VALUES (@U_id, @I_id, @I_name, @I_quantity)";
+
             try
             {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@U_id", userID);
+                        cmd.Parameters.AddWithValue("@I_name", ingredient);
+                        cmd.Parameters.AddWithValue("@I_id", ingredientID);
+                        cmd.Parameters.AddWithValue("@I_quantity", quantity);
 
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(query, conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
-                cmd.Parameters.AddWithValue("@U_id", userID);
-                cmd.Parameters.AddWithValue("@I_name", ingredient);
-                cmd.Parameters.AddWithValue("@I_id", ingredientID);
-                cmd.Parameters.AddWithValue("@I_quantity", quantity);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Ingredient added successfully!");
+                
                 searchBox.Clear();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error adding ingredient: " + ex.Message);
             }
-            finally
-            {
-                conn.Close();
-            }
         }
+
 
         private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {

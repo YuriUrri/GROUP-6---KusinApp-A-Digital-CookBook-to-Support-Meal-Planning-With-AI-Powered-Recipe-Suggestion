@@ -157,6 +157,34 @@ namespace KusinApp
             return userId;
         }
 
+        public DataTable GetUserInventory(string userID)
+        {
+            string query = @"SELECT user_id, ingredient_id, ingredient_name, ingredient_quantity 
+                     FROM user_inventory 
+                     WHERE user_id = @uid";
+
+            DataTable dt = new DataTable();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@uid", userID);
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading inventory: " + ex.Message);
+            }
+
+            return dt;
+        }
+
         internal void executeNonQuery(string insertQuery)
         {
             try
