@@ -43,7 +43,6 @@ namespace KusinApp
             label2 = new Label();
             recipeSuggestionBox = new ListView();
             recipesImageList = new ImageList(components);
-            suggestionBox = new ListBox();
             button4 = new Button();
             ingCountIncrementer = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)ingCountIncrementer).BeginInit();
@@ -158,17 +157,6 @@ namespace KusinApp
             recipesImageList.ImageSize = new Size(16, 16);
             recipesImageList.TransparentColor = Color.Transparent;
             // 
-            // suggestionBox
-            // 
-            suggestionBox.FormattingEnabled = true;
-            suggestionBox.ItemHeight = 15;
-            suggestionBox.Location = new Point(12, 138);
-            suggestionBox.Name = "suggestionBox";
-            suggestionBox.Size = new Size(231, 94);
-            suggestionBox.TabIndex = 5;
-            suggestionBox.Visible = false;
-            suggestionBox.SelectedIndexChanged += listBox1_SelectedIndexChanged;
-            // 
             // button4
             // 
             button4.Location = new Point(224, 526);
@@ -199,7 +187,6 @@ namespace KusinApp
             Controls.Add(Addlabel);
             Controls.Add(itemList);
             Controls.Add(addButton);
-            Controls.Add(suggestionBox);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -227,7 +214,6 @@ namespace KusinApp
         private Label label2;
         private ListView recipeSuggestionBox;
         private ImageList recipesImageList;
-        private ListBox suggestionBox;
         private Button button4;
         private NumericUpDown ingCountIncrementer;
     }

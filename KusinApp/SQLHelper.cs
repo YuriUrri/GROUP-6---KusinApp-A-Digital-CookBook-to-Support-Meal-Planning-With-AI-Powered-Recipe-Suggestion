@@ -206,5 +206,32 @@ namespace KusinApp
                     dbConn.Close();
             }
         }
+
+        internal DataTable SearchUserInventory(string userID, string searchTerm)
+        {
+            string query = @"SELECT user_id, ingredient_id, ingredient_name, ingredient_quantity 
+                     FROM user_inventory 
+                     WHERE user_id = @uid AND ingredient_name LIKE @searchTerm";
+            DataTable dt = new DataTable();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@uid", userID);
+                        cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error searching inventory: " + ex.Message);
+            }
+            return dt;
+        }
     }
 }

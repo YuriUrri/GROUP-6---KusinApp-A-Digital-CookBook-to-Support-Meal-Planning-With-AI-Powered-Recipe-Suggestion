@@ -28,29 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            inventoryDG = new DataGridView();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
             inventorySearch = new TextBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            nameTextBox = new TextBox();
+            quantityTextBox = new TextBox();
             label1 = new Label();
             Search = new Label();
-            Name = new Label();
+            labelName = new Label();
             label3 = new Label();
-            button4 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            updateButton = new Button();
+            ((System.ComponentModel.ISupportInitialize)inventoryDG).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // inventoryDG
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 50);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(320, 353);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            inventoryDG.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            inventoryDG.Location = new Point(12, 50);
+            inventoryDG.MultiSelect = false;
+            inventoryDG.Name = "inventoryDG";
+            inventoryDG.ReadOnly = true;
+            inventoryDG.Size = new Size(320, 353);
+            inventoryDG.TabIndex = 0;
+            inventoryDG.CellContentClick += dataGridView1_CellContentClick;
             // 
             // button3
             // 
@@ -69,6 +71,7 @@
             button2.TabIndex = 6;
             button2.Text = "Personal Recipes";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -87,22 +90,25 @@
             inventorySearch.Name = "inventorySearch";
             inventorySearch.Size = new Size(146, 23);
             inventorySearch.TabIndex = 8;
+            inventorySearch.TextChanged += inventorySearch_TextChanged;
             // 
-            // textBox1
+            // nameTextBox
             // 
-            textBox1.Location = new Point(17, 426);
-            textBox1.Margin = new Padding(2, 1, 2, 1);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(146, 23);
-            textBox1.TabIndex = 9;
+            nameTextBox.Location = new Point(17, 426);
+            nameTextBox.Margin = new Padding(2, 1, 2, 1);
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new Size(146, 23);
+            nameTextBox.TabIndex = 9;
+            nameTextBox.TextChanged += textBox1_TextChanged;
             // 
-            // textBox2
+            // quantityTextBox
             // 
-            textBox2.Location = new Point(177, 426);
-            textBox2.Margin = new Padding(2, 1, 2, 1);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(146, 23);
-            textBox2.TabIndex = 10;
+            quantityTextBox.Location = new Point(177, 426);
+            quantityTextBox.Margin = new Padding(2, 1, 2, 1);
+            quantityTextBox.Name = "quantityTextBox";
+            quantityTextBox.Size = new Size(146, 23);
+            quantityTextBox.TabIndex = 10;
+            quantityTextBox.TextChanged += textBox2_TextChanged;
             // 
             // label1
             // 
@@ -122,14 +128,14 @@
             Search.TabIndex = 12;
             Search.Text = "Search";
             // 
-            // Name
+            // labelName
             // 
-            Name.AutoSize = true;
-            Name.Location = new Point(17, 410);
-            Name.Name = "Name";
-            Name.Size = new Size(39, 15);
-            Name.TabIndex = 13;
-            Name.Text = "Name";
+            labelName.AutoSize = true;
+            labelName.Location = new Point(17, 410);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(39, 15);
+            labelName.TabIndex = 13;
+            labelName.Text = "Name";
             // 
             // label3
             // 
@@ -140,52 +146,55 @@
             label3.TabIndex = 14;
             label3.Text = "Quantity";
             // 
-            // button4
+            // updateButton
             // 
-            button4.Location = new Point(126, 487);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 15;
-            button4.Text = "Update";
-            button4.UseVisualStyleBackColor = true;
+            updateButton.Location = new Point(126, 487);
+            updateButton.Name = "updateButton";
+            updateButton.Size = new Size(75, 23);
+            updateButton.TabIndex = 15;
+            updateButton.Text = "Update";
+            updateButton.UseVisualStyleBackColor = true;
+            updateButton.Click += button4_Click;
             // 
             // Inventory
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(344, 590);
-            Controls.Add(button4);
+            Controls.Add(updateButton);
             Controls.Add(label3);
-            Controls.Add(Name);
+            Controls.Add(labelName);
             Controls.Add(Search);
             Controls.Add(label1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(quantityTextBox);
+            Controls.Add(nameTextBox);
             Controls.Add(inventorySearch);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(dataGridView1);
-            //Name = "Inventory";
+            Controls.Add(inventoryDG);
+            Name = "Inventory";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Inventory";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += Inventory_Load_1;
+            ((System.ComponentModel.ISupportInitialize)inventoryDG).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView inventoryDG;
         private Button button3;
         private Button button2;
         private Button button1;
         private TextBox inventorySearch;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox nameTextBox;
+        private TextBox quantityTextBox;
         private Label label1;
         private Label Search;
-        private Label Name;
+        private Label labelName;
         private Label label3;
-        private Button button4;
+        private Button updateButton;
     }
 }
