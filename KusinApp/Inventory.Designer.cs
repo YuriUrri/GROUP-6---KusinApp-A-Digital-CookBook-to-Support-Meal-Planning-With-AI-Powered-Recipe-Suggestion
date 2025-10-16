@@ -97,6 +97,7 @@
             nameTextBox.Location = new Point(17, 426);
             nameTextBox.Margin = new Padding(2, 1, 2, 1);
             nameTextBox.Name = "nameTextBox";
+            nameTextBox.ReadOnly = true;
             nameTextBox.Size = new Size(146, 23);
             nameTextBox.TabIndex = 9;
             nameTextBox.TextChanged += textBox1_TextChanged;
@@ -131,7 +132,7 @@
             // labelName
             // 
             labelName.AutoSize = true;
-            labelName.Location = new Point(17, 410);
+            labelName.Location = new Point(20, 410);
             labelName.Name = "labelName";
             labelName.Size = new Size(39, 15);
             labelName.TabIndex = 13;
@@ -148,7 +149,7 @@
             // 
             // updateButton
             // 
-            updateButton.Location = new Point(126, 487);
+            updateButton.Location = new Point(17, 453);
             updateButton.Name = "updateButton";
             updateButton.Size = new Size(75, 23);
             updateButton.TabIndex = 15;

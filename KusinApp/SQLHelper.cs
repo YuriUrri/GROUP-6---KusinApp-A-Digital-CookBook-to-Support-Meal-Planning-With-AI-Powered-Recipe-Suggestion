@@ -16,10 +16,10 @@ namespace KusinApp
         private MySqlDataAdapter da;
         private DataTable dt;
 
-        private string strConn = "server=127.0.0.1;uid=root;pwd=;database=kusinapp;";
-        private string strOtherConn = "server=localhost;uid=root;pwd=;database=";
+        private string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=kusinapp;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
+        private string strOtherConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=kusinapp;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
 
-        
+
 
         public void dbConnection()
         {
@@ -58,25 +58,40 @@ namespace KusinApp
 
         public void displayRecords(String strQuery, DataGridView DG) //for datagrid view
         {
-            dbConn.Open();
-            da = new MySqlDataAdapter(strQuery, dbConn);
-            dt = new DataTable();
-            da.Fill(dt); //whatever records in the server is present, will be filled into datagrid
-            DG.DataSource = dt;
-            dbConn.Close();
+            try
+            {
+                dbConn.Open();
+                da = new MySqlDataAdapter(strQuery, dbConn);
+                dt = new DataTable();
+                da.Fill(dt); //whatever records in the server is present, will be filled into datagrid
+                DG.DataSource = dt;
+                dbConn.Close();
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
         }
 
         public void SQLManager(String strQuery)
         {
-            dbConn.Open();
-            sqlCommand = new MySqlCommand(strQuery, dbConn);
-            sqlCommand.ExecuteNonQuery();
-            dbConn.Close();
+            try
+            {
+                dbConn.Open();
+                sqlCommand = new MySqlCommand(strQuery, dbConn);
+                sqlCommand.ExecuteNonQuery();
+                dbConn.Close();
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
+            
         }
 
         public bool ValidateLogin(string user, string pass)
         {
-            string query = "SELECT password FROM user_login WHERE username = @user";
+            string query = "SELECT password FROM kusinapp.user_login WHERE username = @user;";
             
             MySqlCommand cmd = null;
             
@@ -99,8 +114,8 @@ namespace KusinApp
                 return false;
             }
             catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
+                { 
+            
                 return false;
             }
             finally
@@ -116,12 +131,12 @@ namespace KusinApp
 
         public string GetUserID(string username, string password)
         {
-        string query = @"
+            string query = @"
         SELECT user_id 
-        FROM user_login 
+        FROM kusinapp.user_login 
         WHERE LOWER(TRIM(username)) = LOWER(TRIM(@username)) 
-        AND TRIM(password) = TRIM(@password)
-        LIMIT 1";
+          AND TRIM(password) = TRIM(@password)
+        LIMIT 1;";
 
             string userId = string.Empty;
 
@@ -130,6 +145,7 @@ namespace KusinApp
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
                     conn.Open();
+
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", username.Trim());
@@ -140,7 +156,8 @@ namespace KusinApp
                         if (result != null)
                         {
                             userId = result.ToString();
-                            
+                            // Optional: You can log or debug this if needed
+                            // MessageBox.Show("User found: " + userId);
                         }
                         else
                         {
@@ -151,7 +168,7 @@ namespace KusinApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error fetching user ID: " + ex.Message);
+                MessageBox.Show("⚠️ Database error: " + ex.Message);
             }
 
             return userId;
@@ -160,7 +177,7 @@ namespace KusinApp
         public DataTable GetUserInventory(string userID)
         {
             string query = @"SELECT user_id, ingredient_id, ingredient_name, ingredient_quantity 
-                     FROM user_inventory 
+                     FROM kusinapp.user_inventory 
                      WHERE user_id = @uid";
 
             DataTable dt = new DataTable();
@@ -210,7 +227,7 @@ namespace KusinApp
         internal DataTable SearchUserInventory(string userID, string searchTerm)
         {
             string query = @"SELECT user_id, ingredient_id, ingredient_name, ingredient_quantity 
-                     FROM user_inventory 
+                     FROM kusinapp.user_inventory 
                      WHERE user_id = @uid AND ingredient_name LIKE @searchTerm";
             DataTable dt = new DataTable();
             try

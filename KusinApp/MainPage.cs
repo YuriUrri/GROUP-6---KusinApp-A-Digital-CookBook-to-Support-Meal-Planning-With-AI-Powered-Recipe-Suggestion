@@ -1,4 +1,4 @@
-using KusinApp;
+﻿using KusinApp;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -8,7 +8,7 @@ namespace KusinApp
     {
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
-        string strConn = "server=127.0.0.1;uid=root;pwd=;database=kusinapp;";
+        string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
         public MainPage()
         {
             InitializeComponent();
@@ -50,18 +50,28 @@ namespace KusinApp
         {
             try
             {
-                string query = "SELECT `ingredient_id`, `ingredient_name` FROM `ingredient_list`";
+                
+                string query = "SELECT ingredient_name FROM ingredient_list";
 
+                
                 DataTable dt = help.displayRecords(query);
 
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("No ingredients found in the database.");
+                    return;
+                }
+
+                
                 AutoCompleteStringCollection autoSource = new AutoCompleteStringCollection();
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    autoSource.Add(row["ingredient_name"].ToString());
-                    autoSource.Add(row["ingredient_id"].ToString());
+                    if (row["ingredient_name"] != DBNull.Value)
+                        autoSource.Add(row["ingredient_name"].ToString());
                 }
 
+                
                 searchBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 searchBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 searchBox.AutoCompleteCustomSource = autoSource;
@@ -71,6 +81,7 @@ namespace KusinApp
                 MessageBox.Show("Error loading autocomplete: " + ex.Message);
             }
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -151,7 +162,7 @@ namespace KusinApp
 
         private string GetIngredientID(string ingredientName)
         {
-            string query = "SELECT ingredient_id FROM ingredient_list WHERE ingredient_name = @name LIMIT 1";
+            string query = "SELECT ingredient_id FROM kusinapp.ingredient_list WHERE ingredient_name = @name LIMIT 1";
             string id = string.Empty;
 
             try
@@ -177,8 +188,7 @@ namespace KusinApp
         }
         private void insertIngredient(string ingredient, string ingredientID, string userID, string quantity)
         {
-            string query = @"INSERT INTO user_inventory (user_id, ingredient_id, ingredient_name, ingredient_quantity)
-                     VALUES (@U_id, @I_id, @I_name, @I_quantity)";
+            string query = @"INSERT INTO kusinapp.user_inventory (user_id, ingredient_id, ingredient_name, ingredient_quantity) VALUES (@U_id, @I_id, @I_name, @I_quantity)";
 
             try
             {
