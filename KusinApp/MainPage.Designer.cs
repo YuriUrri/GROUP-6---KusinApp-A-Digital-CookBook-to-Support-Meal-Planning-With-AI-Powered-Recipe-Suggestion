@@ -36,7 +36,7 @@ namespace KusinApp
             searchBox = new TextBox();
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
+            SearchRecipeButton = new Button();
             addButton = new Button();
             itemList = new ListBox();
             Addlabel = new Label();
@@ -89,15 +89,15 @@ namespace KusinApp
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // button3
+            // SearchRecipeButton
             // 
-            button3.Location = new Point(224, 555);
-            button3.Name = "button3";
-            button3.Size = new Size(96, 23);
-            button3.TabIndex = 4;
-            button3.Text = "Search Recipes";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            SearchRecipeButton.Location = new Point(224, 555);
+            SearchRecipeButton.Name = "SearchRecipeButton";
+            SearchRecipeButton.Size = new Size(108, 23);
+            SearchRecipeButton.TabIndex = 4;
+            SearchRecipeButton.Text = "Search Recipes";
+            SearchRecipeButton.UseVisualStyleBackColor = true;
+            SearchRecipeButton.Click += button3_Click;
             // 
             // addButton
             // 
@@ -161,7 +161,7 @@ namespace KusinApp
             // 
             button4.Location = new Point(224, 526);
             button4.Name = "button4";
-            button4.Size = new Size(96, 23);
+            button4.Size = new Size(108, 23);
             button4.TabIndex = 12;
             button4.Text = "Back To Login";
             button4.UseVisualStyleBackColor = true;
@@ -187,7 +187,7 @@ namespace KusinApp
             Controls.Add(Addlabel);
             Controls.Add(itemList);
             Controls.Add(addButton);
-            Controls.Add(button3);
+            Controls.Add(SearchRecipeButton);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(searchBox);
@@ -207,7 +207,7 @@ namespace KusinApp
         private TextBox searchBox;
         private Button button1;
         private Button button2;
-        private Button button3;
+        private Button SearchRecipeButton;
         private Button addButton;
         private ListBox itemList;
         private Label Addlabel;
