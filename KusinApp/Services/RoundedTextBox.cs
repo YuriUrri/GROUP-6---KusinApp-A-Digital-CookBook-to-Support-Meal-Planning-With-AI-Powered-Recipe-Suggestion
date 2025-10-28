@@ -19,11 +19,18 @@ namespace KusinApp.Services
         public int LeftMargin { get; set; } = 20;
         public int TopPadding { get; set; } = 6;
 
+        public string PlaceholderText { get; set; } = "Enter text...";
+        public Color PlaceholderColor { get; set; } = Color.Gray;
+
+        private bool _isPlaceholderVisible = false;
+
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
             SetRoundedRegion();
             SetMargins();
+
+            ShowPlaceholder();
         }
 
         private void SetMargins()
@@ -49,17 +56,41 @@ namespace KusinApp.Services
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        protected override void OnGotFocus(EventArgs e)
         {
-            base.OnPaint(e);
-
-            // Apply top padding manually for single-line textboxes
-            if (!this.Multiline)
+            base.OnGotFocus(e);
+            if (_isPlaceholderVisible)
             {
-                int dy = TopPadding;
-                SendMessage(this.Handle, 0x00B1, IntPtr.Zero, IntPtr.Zero); // force redraw
-                this.AutoSize = false;
-                this.Padding = new Padding(0, dy, 0, 0);
+                this.Text = "";
+                this.ForeColor = SystemColors.WindowText;
+                _isPlaceholderVisible = false;
+            }
+        }
+
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            if (string.IsNullOrEmpty(this.Text))
+            {
+                ShowPlaceholder();
+            }
+        }
+
+        private void ShowPlaceholder()
+        {
+            this.Text = PlaceholderText;
+            this.ForeColor = PlaceholderColor;
+            _isPlaceholderVisible = true;
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if (_isPlaceholderVisible)
+            {
+                this.Text = "";
+                this.ForeColor = SystemColors.WindowText;
+                _isPlaceholderVisible = false;
             }
         }
     }

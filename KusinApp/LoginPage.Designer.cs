@@ -58,13 +58,17 @@
             txtUsername.BorderStyle = BorderStyle.None;
             txtUsername.CornerRadius = 10;
             txtUsername.Font = new Font("Segoe UI", 10F);
+            txtUsername.ForeColor = Color.Gray;
             txtUsername.LeftMargin = 20;
             txtUsername.Location = new Point(61, 290);
             txtUsername.Margin = new Padding(2, 1, 2, 1);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderColor = Color.Gray;
+            txtUsername.PlaceholderText = "Enter Username";
             txtUsername.Size = new Size(220, 23);
             txtUsername.TabIndex = 3;
+            txtUsername.Text = "Enter Username";
             txtUsername.TopPadding = 15;
             txtUsername.TextChanged += txtUsername_TextChanged;
             // 
@@ -74,14 +78,18 @@
             txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.CornerRadius = 10;
             txtPassword.Font = new Font("Segoe UI", 10F);
+            txtPassword.ForeColor = Color.Gray;
             txtPassword.LeftMargin = 20;
             txtPassword.Location = new Point(61, 376);
             txtPassword.Margin = new Padding(2, 1, 2, 1);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
+            txtPassword.PlaceholderColor = Color.Gray;
+            txtPassword.PlaceholderText = "Enter Password";
             txtPassword.Size = new Size(220, 23);
             txtPassword.TabIndex = 4;
+            txtPassword.Text = "Enter Password";
             txtPassword.TopPadding = 6;
             txtPassword.TextChanged += textBox2_TextChanged;
             // 
