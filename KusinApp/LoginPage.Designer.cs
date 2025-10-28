@@ -36,6 +36,7 @@
             label5 = new Label();
             label3 = new Label();
             loginButton = new Button();
+            registerButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -123,12 +124,26 @@
             loginButton.UseVisualStyleBackColor = false;
             loginButton.Click += button1_Click;
             // 
+            // registerButton
+            // 
+            registerButton.BackgroundImageLayout = ImageLayout.Zoom;
+            registerButton.FlatAppearance.BorderSize = 0;
+            registerButton.Location = new Point(126, 457);
+            registerButton.Margin = new Padding(2, 1, 2, 1);
+            registerButton.Name = "registerButton";
+            registerButton.Size = new Size(81, 30);
+            registerButton.TabIndex = 9;
+            registerButton.Text = "Register";
+            registerButton.UseVisualStyleBackColor = false;
+            registerButton.Click += registerButton_Click;
+            // 
             // LoginPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(344, 590);
+            Controls.Add(registerButton);
             Controls.Add(loginButton);
             Controls.Add(label3);
             Controls.Add(label5);
@@ -155,5 +170,6 @@
         private Label label5;
         private Label label3;
         private Button loginButton;
+        private Button registerButton;
     }
 }

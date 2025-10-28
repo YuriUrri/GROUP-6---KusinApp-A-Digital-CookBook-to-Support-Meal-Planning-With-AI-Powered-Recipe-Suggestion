@@ -17,6 +17,7 @@ namespace KusinApp
         public static string LoggedInUser { get; private set; }
         public static string LoggedInPass { get; private set; }
         public static string LoggedInId { get; private set; }
+
         public LoginPage()
         {
             InitializeComponent();
@@ -24,8 +25,6 @@ namespace KusinApp
             this.AcceptButton = loginButton;
 
         }
-
-        
 
         private void LoginPage_Load(object sender, EventArgs e)
         {
@@ -52,7 +51,7 @@ namespace KusinApp
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                
+
                 MessageBox.Show("Please enter both username and password.", "Input Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -64,10 +63,10 @@ namespace KusinApp
                 {
                     LoggedInUser = username;
                     LoggedInPass = password;
-                    LoggedInId = help.GetUserID(username,password);
+                    LoggedInId = help.GetUserID(username, password);
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                   
-                    
+
+
                     MainPage mainForm = new MainPage();
                     mainForm.Show();
                     this.DialogResult = DialogResult.OK;
@@ -82,8 +81,6 @@ namespace KusinApp
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            
         }
 
         public string GetID()
@@ -101,6 +98,11 @@ namespace KusinApp
 
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void registerButton_Click(object sender, EventArgs e)
         {
 
         }

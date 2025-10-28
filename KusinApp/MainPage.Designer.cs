@@ -31,9 +31,8 @@ namespace KusinApp
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             label1 = new Label();
-            searchBox = new TextBox();
+            ingBox = new TextBox();
             button1 = new Button();
             button2 = new Button();
             SearchRecipeButton = new Button();
@@ -42,11 +41,18 @@ namespace KusinApp
             Addlabel = new Label();
             label2 = new Label();
             recipeSuggestionBox = new ListView();
-            recipesImageList = new ImageList(components);
             button4 = new Button();
             ingCountIncrementer = new NumericUpDown();
-            panel1 = new Panel();
+            defaultPanel = new Panel();
+            searchBox = new TextBox();
+            searchPanel = new Panel();
+            listView1 = new ListView();
+            listBox1 = new ListBox();
+            label3 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)ingCountIncrementer).BeginInit();
+            defaultPanel.SuspendLayout();
+            searchPanel.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -54,30 +60,27 @@ namespace KusinApp
             label1.AutoSize = true;
             label1.Font = new Font("Gill Sans MT", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ImageAlign = ContentAlignment.TopCenter;
-            label1.Location = new Point(93, 19);
-            label1.Margin = new Padding(6, 0, 6, 0);
+            label1.Location = new Point(50, 9);
             label1.Name = "label1";
-            label1.Size = new Size(492, 133);
+            label1.Size = new Size(246, 67);
             label1.TabIndex = 0;
             label1.Text = "KusinApp";
             label1.Click += label1_Click;
             // 
-            // searchBox
+            // ingBox
             // 
-            searchBox.AutoCompleteMode = AutoCompleteMode.Suggest;
-            searchBox.Location = new Point(22, 233);
-            searchBox.Margin = new Padding(6);
-            searchBox.Name = "searchBox";
-            searchBox.Size = new Size(322, 39);
-            searchBox.TabIndex = 1;
-            searchBox.TextChanged += textBox1_TextChanged;
+            ingBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ingBox.Location = new Point(13, 40);
+            ingBox.Name = "ingBox";
+            ingBox.Size = new Size(175, 23);
+            ingBox.TabIndex = 1;
+            ingBox.TextChanged += textBox1_TextChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(266, 1184);
-            button1.Margin = new Padding(6);
+            button1.Location = new Point(143, 555);
             button1.Name = "button1";
-            button1.Size = new Size(139, 49);
+            button1.Size = new Size(75, 23);
             button1.TabIndex = 2;
             button1.Text = "Inventory";
             button1.UseVisualStyleBackColor = true;
@@ -85,10 +88,9 @@ namespace KusinApp
             // 
             // button2
             // 
-            button2.Location = new Point(26, 1184);
-            button2.Margin = new Padding(6);
+            button2.Location = new Point(14, 555);
             button2.Name = "button2";
-            button2.Size = new Size(228, 49);
+            button2.Size = new Size(123, 23);
             button2.TabIndex = 3;
             button2.Text = "Personal Recipes";
             button2.UseVisualStyleBackColor = true;
@@ -96,10 +98,9 @@ namespace KusinApp
             // 
             // SearchRecipeButton
             // 
-            SearchRecipeButton.Location = new Point(416, 1184);
-            SearchRecipeButton.Margin = new Padding(6);
+            SearchRecipeButton.Location = new Point(7, 91);
             SearchRecipeButton.Name = "SearchRecipeButton";
-            SearchRecipeButton.Size = new Size(201, 49);
+            SearchRecipeButton.Size = new Size(108, 23);
             SearchRecipeButton.TabIndex = 4;
             SearchRecipeButton.Text = "Search Recipes";
             SearchRecipeButton.UseVisualStyleBackColor = true;
@@ -107,10 +108,9 @@ namespace KusinApp
             // 
             // addButton
             // 
-            addButton.Location = new Point(477, 233);
-            addButton.Margin = new Padding(6);
+            addButton.Location = new Point(258, 40);
             addButton.Name = "addButton";
-            addButton.Size = new Size(139, 49);
+            addButton.Size = new Size(75, 23);
             addButton.TabIndex = 6;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
@@ -119,10 +119,10 @@ namespace KusinApp
             // itemList
             // 
             itemList.FormattingEnabled = true;
-            itemList.Location = new Point(22, 294);
-            itemList.Margin = new Padding(6);
+            itemList.ItemHeight = 15;
+            itemList.Location = new Point(13, 69);
             itemList.Name = "itemList";
-            itemList.Size = new Size(591, 228);
+            itemList.Size = new Size(320, 109);
             itemList.TabIndex = 7;
             itemList.SelectedIndexChanged += listBox1_SelectedIndexChanged_1;
             // 
@@ -131,10 +131,9 @@ namespace KusinApp
             Addlabel.AutoSize = true;
             Addlabel.Font = new Font("Gill Sans MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Addlabel.ImageAlign = ContentAlignment.TopCenter;
-            Addlabel.Location = new Point(22, 177);
-            Addlabel.Margin = new Padding(6, 0, 6, 0);
+            Addlabel.Location = new Point(13, 14);
             Addlabel.Name = "Addlabel";
-            Addlabel.Size = new Size(225, 45);
+            Addlabel.Size = new Size(113, 23);
             Addlabel.TabIndex = 8;
             Addlabel.Text = "Add Ingredients";
             // 
@@ -143,36 +142,27 @@ namespace KusinApp
             label2.AutoSize = true;
             label2.Font = new Font("Gill Sans MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ImageAlign = ContentAlignment.TopCenter;
-            label2.Location = new Point(22, 553);
-            label2.Margin = new Padding(6, 0, 6, 0);
+            label2.Location = new Point(13, 190);
             label2.Name = "label2";
-            label2.Size = new Size(400, 45);
+            label2.Size = new Size(200, 23);
             label2.TabIndex = 10;
             label2.Text = "Meals From Your Ingredients";
             label2.Click += label2_Click;
             // 
             // recipeSuggestionBox
             // 
-            recipeSuggestionBox.Location = new Point(22, 608);
-            recipeSuggestionBox.Margin = new Padding(6);
+            recipeSuggestionBox.Location = new Point(13, 216);
             recipeSuggestionBox.Name = "recipeSuggestionBox";
-            recipeSuggestionBox.Size = new Size(591, 288);
+            recipeSuggestionBox.Size = new Size(320, 137);
             recipeSuggestionBox.TabIndex = 11;
             recipeSuggestionBox.UseCompatibleStateImageBehavior = false;
             recipeSuggestionBox.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
-            // recipesImageList
-            // 
-            recipesImageList.ColorDepth = ColorDepth.Depth32Bit;
-            recipesImageList.ImageSize = new Size(16, 16);
-            recipesImageList.TransparentColor = Color.Transparent;
-            // 
             // button4
             // 
-            button4.Location = new Point(416, 1122);
-            button4.Margin = new Padding(6);
+            button4.Location = new Point(224, 555);
             button4.Name = "button4";
-            button4.Size = new Size(201, 49);
+            button4.Size = new Size(108, 23);
             button4.TabIndex = 12;
             button4.Text = "Back To Login";
             button4.UseVisualStyleBackColor = true;
@@ -180,44 +170,110 @@ namespace KusinApp
             // 
             // ingCountIncrementer
             // 
-            ingCountIncrementer.Location = new Point(358, 233);
-            ingCountIncrementer.Margin = new Padding(6);
+            ingCountIncrementer.Location = new Point(194, 40);
             ingCountIncrementer.Name = "ingCountIncrementer";
-            ingCountIncrementer.Size = new Size(108, 39);
+            ingCountIncrementer.Size = new Size(58, 23);
             ingCountIncrementer.TabIndex = 13;
             ingCountIncrementer.ValueChanged += numericUpDown1_ValueChanged;
             // 
-            // panel1
+            // defaultPanel
             // 
-            panel1.Location = new Point(12, 925);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(587, 200);
-            panel1.TabIndex = 14;
+            defaultPanel.Controls.Add(recipeSuggestionBox);
+            defaultPanel.Controls.Add(ingCountIncrementer);
+            defaultPanel.Controls.Add(ingBox);
+            defaultPanel.Controls.Add(addButton);
+            defaultPanel.Controls.Add(itemList);
+            defaultPanel.Controls.Add(label2);
+            defaultPanel.Controls.Add(Addlabel);
+            defaultPanel.Location = new Point(3, 132);
+            defaultPanel.Margin = new Padding(2, 1, 2, 1);
+            defaultPanel.Name = "defaultPanel";
+            defaultPanel.Size = new Size(338, 365);
+            defaultPanel.TabIndex = 14;
+            // 
+            // searchBox
+            // 
+            searchBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            searchBox.Location = new Point(121, 91);
+            searchBox.Name = "searchBox";
+            searchBox.Size = new Size(215, 23);
+            searchBox.TabIndex = 14;
+            searchBox.TextChanged += searchBox_TextChanged;
+            // 
+            // searchPanel
+            // 
+            searchPanel.Controls.Add(listView1);
+            searchPanel.Controls.Add(listBox1);
+            searchPanel.Controls.Add(label3);
+            searchPanel.Controls.Add(label4);
+            searchPanel.Location = new Point(3, 132);
+            searchPanel.Margin = new Padding(2, 1, 2, 1);
+            searchPanel.Name = "searchPanel";
+            searchPanel.Size = new Size(338, 365);
+            searchPanel.TabIndex = 15;
+            searchPanel.Visible = false;
+            // 
+            // listView1
+            // 
+            listView1.Location = new Point(13, 216);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(320, 137);
+            listView1.TabIndex = 11;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(13, 39);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(320, 139);
+            listBox1.TabIndex = 7;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Gill Sans MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ImageAlign = ContentAlignment.TopCenter;
+            label3.Location = new Point(13, 190);
+            label3.Name = "label3";
+            label3.Size = new Size(61, 23);
+            label3.TabIndex = 10;
+            label3.Text = "Recipes";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Gill Sans MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ImageAlign = ContentAlignment.TopCenter;
+            label4.Location = new Point(13, 14);
+            label4.Name = "label4";
+            label4.Size = new Size(129, 23);
+            label4.TabIndex = 8;
+            label4.Text = "Suggested Recipes";
             // 
             // MainPage
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(639, 1259);
-            Controls.Add(panel1);
-            Controls.Add(ingCountIncrementer);
+            ClientSize = new Size(344, 590);
+            Controls.Add(searchBox);
             Controls.Add(button4);
-            Controls.Add(recipeSuggestionBox);
-            Controls.Add(label2);
-            Controls.Add(Addlabel);
-            Controls.Add(itemList);
-            Controls.Add(addButton);
             Controls.Add(SearchRecipeButton);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(searchBox);
             Controls.Add(label1);
-            Margin = new Padding(6);
+            Controls.Add(searchPanel);
+            Controls.Add(defaultPanel);
             Name = "MainPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "KusinApp";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)ingCountIncrementer).EndInit();
+            defaultPanel.ResumeLayout(false);
+            defaultPanel.PerformLayout();
+            searchPanel.ResumeLayout(false);
+            searchPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -225,7 +281,7 @@ namespace KusinApp
         #endregion
 
         private Label label1;
-        private TextBox searchBox;
+        private TextBox ingBox;
         private Button button1;
         private Button button2;
         private Button SearchRecipeButton;
@@ -237,6 +293,12 @@ namespace KusinApp
         private ImageList recipesImageList;
         private Button button4;
         private NumericUpDown ingCountIncrementer;
-        private Panel panel1;
+        private Panel defaultPanel;
+        private TextBox searchBox;
+        private Panel searchPanel;
+        private ListView listView1;
+        private ListBox listBox1;
+        private Label label3;
+        private Label label4;
     }
 }

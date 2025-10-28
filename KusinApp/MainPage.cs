@@ -20,10 +20,7 @@ namespace KusinApp
             LoadUserInventory();
             SetupAutoComplete();
             help.dbConnection();
-            
-            
-            
-            
+
         }
         private void LoadUserInventory()
         {
@@ -50,10 +47,10 @@ namespace KusinApp
         {
             try
             {
-                
+
                 string query = "SELECT ingredient_name FROM ingredient_list";
 
-                
+
                 DataTable dt = help.displayRecords(query);
 
                 if (dt == null || dt.Rows.Count == 0)
@@ -62,7 +59,7 @@ namespace KusinApp
                     return;
                 }
 
-                
+
                 AutoCompleteStringCollection autoSource = new AutoCompleteStringCollection();
 
                 foreach (DataRow row in dt.Rows)
@@ -71,10 +68,10 @@ namespace KusinApp
                         autoSource.Add(row["ingredient_name"].ToString());
                 }
 
-                
-                searchBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                searchBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                searchBox.AutoCompleteCustomSource = autoSource;
+
+                ingBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                ingBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                ingBox.AutoCompleteCustomSource = autoSource;
             }
             catch (Exception ex)
             {
@@ -126,7 +123,7 @@ namespace KusinApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string ingredient = searchBox.Text.Trim();
+            string ingredient = ingBox.Text.Trim();
             string userID = help.GetUserID(login.GetUser(), login.GetPass());
             string quantity = ingCountIncrementer.Value.ToString();
 
@@ -148,7 +145,7 @@ namespace KusinApp
                 return;
             }
 
-            
+
             string ingredientID = GetIngredientID(ingredient);
 
             if (string.IsNullOrEmpty(ingredientID))
@@ -157,7 +154,7 @@ namespace KusinApp
                 return;
             }
 
-            
+
             insertIngredient(ingredient, ingredientID, userID, quantity);
             LoadUserInventory();
         }
@@ -209,8 +206,8 @@ namespace KusinApp
                     }
                 }
 
-                
-                searchBox.Clear();
+
+                ingBox.Clear();
             }
             catch (Exception ex)
             {
@@ -245,6 +242,31 @@ namespace KusinApp
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(searchBox.Text))
+            {
+                showDefault();
+            }
+            else
+            {
+                showPanel();
+            }
+            //plus actual search features
+        }
+        private void showPanel()
+        {
+            searchPanel.Visible = true;
+            searchPanel.BringToFront();
+            defaultPanel.Visible = false;
+        }
+        private void showDefault()
+        {
+            defaultPanel.Visible = true;
+            defaultPanel.BringToFront();
+            searchPanel.Visible = false;
         }
     }
 }
