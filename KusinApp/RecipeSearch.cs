@@ -42,21 +42,21 @@ namespace KusinApp
 
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void pbHome_Click(object sender, EventArgs e)
         {
             MainPage mainPage = new MainPage();
             mainPage.Show();
             this.Hide();
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
+        private void pbRecipe_Click(object sender, EventArgs e)
         {
             RecipeSearch recipe = new RecipeSearch();
             recipe.Show();
             this.Hide();
         }
 
-        private void pictureBox6_Click(object sender, EventArgs e)
+        private void pbInventory_Click(object sender, EventArgs e)
         {
             Inventory inventory = new Inventory();
             inventory.Show();
