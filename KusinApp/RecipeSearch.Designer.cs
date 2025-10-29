@@ -28,71 +28,148 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecipeSearch));
             listView1 = new ListView();
-            button3 = new Button();
-            button1 = new Button();
-            button2 = new Button();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            label1 = new Label();
+            pictureBox6 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // listView1
             // 
-            listView1.Location = new Point(12, 12);
+            listView1.ForeColor = Color.FromArgb(0, 48, 73);
+            listView1.Location = new Point(29, 137);
             listView1.Name = "listView1";
-            listView1.Size = new Size(320, 471);
+            listView1.Size = new Size(280, 353);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // button3
+            // pictureBox1
             // 
-            button3.Location = new Point(222, 555);
-            button3.Name = "button3";
-            button3.Size = new Size(110, 23);
-            button3.TabIndex = 5;
-            button3.Text = "Inventory";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(80, 22);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(173, 55);
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
             // 
-            // button1
+            // pictureBox2
             // 
-            button1.Location = new Point(141, 555);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 6;
-            button1.Text = "Home";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(29, 39);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(27, 25);
+            pictureBox2.TabIndex = 9;
+            pictureBox2.TabStop = false;
             // 
-            // button2
+            // label1
             // 
-            button2.Location = new Point(12, 555);
-            button2.Name = "button2";
-            button2.Size = new Size(123, 23);
-            button2.TabIndex = 7;
-            button2.Text = "Personal Recipes";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(0, 48, 73);
+            label1.Location = new Point(29, 100);
+            label1.Name = "label1";
+            label1.Size = new Size(158, 21);
+            label1.TabIndex = 10;
+            label1.Text = "PERSONAL RECIPES";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.FromArgb(0, 48, 73);
+            pictureBox6.Cursor = Cursors.Hand;
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(261, 528);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(35, 33);
+            pictureBox6.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox6.TabIndex = 25;
+            pictureBox6.TabStop = false;
+            pictureBox6.Click += pictureBox6_Click;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.FromArgb(0, 48, 73);
+            pictureBox5.Cursor = Cursors.Hand;
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(156, 528);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(35, 33);
+            pictureBox5.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox5.TabIndex = 24;
+            pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackColor = Color.FromArgb(0, 48, 73);
+            pictureBox4.Cursor = Cursors.Hand;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(53, 528);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(35, 33);
+            pictureBox4.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox4.TabIndex = 23;
+            pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(-8, 506);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(363, 84);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 22;
+            pictureBox3.TabStop = false;
             // 
             // RecipeSearch
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(344, 590);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(button3);
+            BackColor = Color.FromArgb(252, 191, 73);
+            ClientSize = new Size(344, 578);
+            Controls.Add(pictureBox6);
+            Controls.Add(pictureBox5);
+            Controls.Add(pictureBox4);
+            Controls.Add(pictureBox3);
+            Controls.Add(label1);
+            Controls.Add(pictureBox2);
+            Controls.Add(pictureBox1);
             Controls.Add(listView1);
             Name = "RecipeSearch";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RecipeSearch";
             Load += RecipeSearch_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private ListView listView1;
-        private Button button3;
-        private Button button1;
-        private Button button2;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private Label label1;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
     }
 }

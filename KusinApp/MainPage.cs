@@ -79,19 +79,6 @@ namespace KusinApp
             }
         }
 
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Inventory inv = new Inventory();
-            inv.Show();
-            this.Hide();
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -231,14 +218,6 @@ namespace KusinApp
 
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            LoginPage login = new LoginPage();
-            login.Show();
-            this.Hide();
-
-        }
-
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
@@ -267,6 +246,59 @@ namespace KusinApp
             defaultPanel.Visible = true;
             defaultPanel.BringToFront();
             searchPanel.Visible = false;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            LoginPage login = new LoginPage();
+            login.Show();
+            this.Hide();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void roundedButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void roundedTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            MainPage main = new MainPage();
+            main.Show();
+            this.Hide();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            Inventory inv = new Inventory();
+            inv.Show();
+            this.Hide();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            RecipeSearch recipe = new RecipeSearch();
+            recipe.Show();
+            this.Hide();
         }
     }
 }

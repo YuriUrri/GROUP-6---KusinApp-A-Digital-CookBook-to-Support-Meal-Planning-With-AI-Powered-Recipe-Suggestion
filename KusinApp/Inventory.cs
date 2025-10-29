@@ -53,7 +53,7 @@ namespace KusinApp
 
             help.dbConnection();
             LoadUserInventory();
-            
+
 
 
         }
@@ -90,7 +90,7 @@ namespace KusinApp
             searchIngredient();
         }
 
-        
+
         private void searchIngredient()
         {
             string searchTerm = inventorySearch.Text.Trim();
@@ -121,7 +121,7 @@ namespace KusinApp
 
         private void updateInventory()
         {
-            
+
             if (string.IsNullOrWhiteSpace(quantityTextBox.Text) ||
                 !int.TryParse(quantityTextBox.Text, out int quantity) || quantity < 0)
             {
@@ -151,7 +151,7 @@ namespace KusinApp
                 {
                     conn.Open();
 
-                    
+
                     string getIdQuery = "SELECT ingredient_id FROM ingredient_list WHERE ingredient_name = @name LIMIT 1";
                     using (MySql.Data.MySqlClient.MySqlCommand getIdCmd = new MySql.Data.MySqlClient.MySqlCommand(getIdQuery, conn))
                     {
@@ -167,7 +167,7 @@ namespace KusinApp
                         ingredientID = result.ToString();
                     }
 
-                    
+
                     string updateQuery = "UPDATE user_inventory " +
                                          "SET ingredient_name = @name, ingredient_quantity = @quantity " +
                                          "WHERE ingredient_id = @id AND user_id = @uid";
@@ -195,7 +195,41 @@ namespace KusinApp
             }
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            LoginPage login = new LoginPage();
+            login.Show();
+            this.Hide();
+        }
 
+        private void incrementerButton1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            MainPage main = new MainPage();
+            main.Show();
+            this.Hide();
+        }
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            RecipeSearch recipe = new RecipeSearch();
+            recipe.Show();
+            this.Hide();
+        }
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            Inventory inv = new Inventory();
+            inv.Show();
+            this.Hide();
+        }
     }
 
 }
