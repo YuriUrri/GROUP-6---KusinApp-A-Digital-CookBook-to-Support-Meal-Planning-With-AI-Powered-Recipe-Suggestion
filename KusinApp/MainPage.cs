@@ -238,17 +238,10 @@ namespace KusinApp
         }
         private void showDefault()
         {
-            // Show the default panel properly
             defaultPanel.Visible = true;
             defaultPanel.BringToFront();
-
-            // Hide other panels
             searchPanel.Visible = false;
-            
-
-            // Reset focus to ingredient box (makes it active again)
-            ingBox.Enabled = true;
-            
+            ingBox.BringToFront();
 
         }
 
