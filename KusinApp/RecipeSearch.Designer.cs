@@ -50,7 +50,7 @@
             listView1.ForeColor = Color.FromArgb(0, 48, 73);
             listView1.Location = new Point(29, 137);
             listView1.Name = "listView1";
-            listView1.Size = new Size(280, 353);
+            listView1.Size = new Size(280, 411);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -89,7 +89,7 @@
             pictureBox6.BackColor = Color.FromArgb(0, 48, 73);
             pictureBox6.Cursor = Cursors.Hand;
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(261, 528);
+            pictureBox6.Location = new Point(259, 604);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(35, 33);
             pictureBox6.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -102,7 +102,7 @@
             pictureBox5.BackColor = Color.FromArgb(0, 48, 73);
             pictureBox5.Cursor = Cursors.Hand;
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(156, 528);
+            pictureBox5.Location = new Point(154, 604);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(35, 33);
             pictureBox5.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -115,7 +115,7 @@
             pictureBox4.BackColor = Color.FromArgb(0, 48, 73);
             pictureBox4.Cursor = Cursors.Hand;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(53, 528);
+            pictureBox4.Location = new Point(51, 604);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(35, 33);
             pictureBox4.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -126,7 +126,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(-8, 506);
+            pictureBox3.Location = new Point(-10, 582);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(363, 84);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -138,7 +138,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
-            ClientSize = new Size(344, 578);
+            ClientSize = new Size(344, 659);
             Controls.Add(pictureBox6);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox4);
