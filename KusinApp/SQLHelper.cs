@@ -250,5 +250,34 @@ namespace KusinApp
             }
             return dt;
         }
+
+        public DataTable GetUserRecipes(string userId)
+        {
+            string query = @"SELECT recipe_id, recipe_name, ingredients, instructions
+                     FROM kusinapp.user_recipes
+                     WHERE user_id = @uid";
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@uid", userId);
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading recipes: " + ex.Message);
+            }
+
+            return dt;
+        }
+
     }
 }
