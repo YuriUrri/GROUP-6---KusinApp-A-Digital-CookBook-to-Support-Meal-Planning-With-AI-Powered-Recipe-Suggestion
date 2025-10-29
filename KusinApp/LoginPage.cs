@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Svg;
+using System.Drawing;
 
 namespace KusinApp
 {
@@ -23,15 +25,9 @@ namespace KusinApp
             InitializeComponent();
             help.dbConnection();
             this.AcceptButton = loginButton;
-
         }
 
         private void LoginPage_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
         {
 
         }
@@ -64,8 +60,6 @@ namespace KusinApp
                     LoggedInUser = username;
                     LoggedInPass = password;
                     LoggedInId = help.GetUserID(username, password);
-                    MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
 
                     MainPage mainForm = new MainPage();
                     mainForm.Show();
@@ -103,6 +97,16 @@ namespace KusinApp
         }
 
         private void registerButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
         {
 
         }
