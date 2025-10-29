@@ -54,6 +54,7 @@
             listView1.Size = new Size(319, 469);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // pictureBox1
             // 

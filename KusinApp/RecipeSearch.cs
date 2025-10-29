@@ -35,12 +35,26 @@ namespace KusinApp
 
         }
 
-        private void RecipeSearch_Load(object sender, EventArgs e)
+        private void SearchRecipe_Load(object sender, EventArgs e)
         {
-            help.dbConnection();
+            listView1.View = View.Details;
+            listView1.Columns.Clear();
+            listView1.Columns.Add("Recipe Name", 200);
+            listView1.Columns.Add("Ingredients", 300);
 
+            string userId = LoginPage.LoggedInId; // Logged-in user from LoginPage
+            DataTable dt = help.GetUserRecipes(userId);
 
+            listView1.Items.Clear();
+            foreach (DataRow row in dt.Rows)
+            {
+                ListViewItem item = new ListViewItem(row["recipe_name"].ToString());
+                item.SubItems.Add(row["ingredients"].ToString());
+                item.Tag = row; // store full row for later use
+                listView1.Items.Add(item);
+            }
         }
+
 
         private void pbHome_Click(object sender, EventArgs e)
         {
@@ -62,5 +76,27 @@ namespace KusinApp
             inventory.Show();
             this.Hide();
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                // Get the selected recipe row
+                DataRow row = (DataRow)listView1.SelectedItems[0].Tag;
+
+                string recipeName = row["recipe_name"].ToString();
+                string ingredients = row["ingredients"].ToString();
+                string instructions = row["instructions"].ToString();
+
+                // Example: display in TextBoxes or MessageBox
+                MessageBox.Show(
+                    $"🍳 Recipe: {recipeName}\n\nIngredients:\n{ingredients}\n\nInstructions:\n{instructions}",
+                    "Recipe Details",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+        }
+
     }
 }
