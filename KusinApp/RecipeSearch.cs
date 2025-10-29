@@ -37,6 +37,8 @@ namespace KusinApp
 
         private void RecipeSearch_Load(object sender, EventArgs e)
         {
+            help.dbConnection();
+
 
         }
 
