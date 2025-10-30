@@ -38,7 +38,7 @@ namespace KusinApp
             label2 = new Label();
             recipeSuggestionBox = new ListView();
             defaultPanel = new Panel();
-            ingBox = new TextBox();
+            ingBox = new KusinApp.Services.RoundedTextBox();
             addButton1 = new KusinApp.Services.RoundedButton();
             ingIncrementer = new KusinApp.Services.IncrementerButton();
             label4 = new Label();
@@ -85,9 +85,9 @@ namespace KusinApp
             // 
             itemList.FormattingEnabled = true;
             itemList.ItemHeight = 15;
-            itemList.Location = new Point(13, 69);
+            itemList.Location = new Point(24, 84);
             itemList.Name = "itemList";
-            itemList.Size = new Size(320, 109);
+            itemList.Size = new Size(292, 124);
             itemList.TabIndex = 7;
             itemList.SelectedIndexChanged += listBox1_SelectedIndexChanged_1;
             // 
@@ -96,7 +96,7 @@ namespace KusinApp
             label2.AutoSize = true;
             label2.Font = new Font("Gill Sans MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ImageAlign = ContentAlignment.TopCenter;
-            label2.Location = new Point(13, 190);
+            label2.Location = new Point(23, 223);
             label2.Name = "label2";
             label2.Size = new Size(200, 23);
             label2.TabIndex = 10;
@@ -105,9 +105,9 @@ namespace KusinApp
             // 
             // recipeSuggestionBox
             // 
-            recipeSuggestionBox.Location = new Point(13, 216);
+            recipeSuggestionBox.Location = new Point(23, 249);
             recipeSuggestionBox.Name = "recipeSuggestionBox";
-            recipeSuggestionBox.Size = new Size(320, 137);
+            recipeSuggestionBox.Size = new Size(293, 177);
             recipeSuggestionBox.TabIndex = 11;
             recipeSuggestionBox.UseCompatibleStateImageBehavior = false;
             recipeSuggestionBox.SelectedIndexChanged += listView1_SelectedIndexChanged;
@@ -124,15 +124,24 @@ namespace KusinApp
             defaultPanel.Location = new Point(3, 132);
             defaultPanel.Margin = new Padding(2, 1, 2, 1);
             defaultPanel.Name = "defaultPanel";
-            defaultPanel.Size = new Size(338, 365);
+            defaultPanel.Size = new Size(338, 429);
             defaultPanel.TabIndex = 14;
             // 
             // ingBox
             // 
-            ingBox.Location = new Point(13, 39);
+            ingBox.BorderStyle = BorderStyle.None;
+            ingBox.CornerRadius = 10;
+            ingBox.ForeColor = Color.Gray;
+            ingBox.LeftMargin = 20;
+            ingBox.Location = new Point(24, 48);
+            ingBox.Multiline = true;
             ingBox.Name = "ingBox";
-            ingBox.Size = new Size(193, 23);
+            ingBox.PlaceholderColor = Color.Gray;
+            ingBox.PlaceholderText = "Enter text...";
+            ingBox.Size = new Size(194, 23);
             ingBox.TabIndex = 22;
+            ingBox.Text = "Enter text...";
+            ingBox.TopPadding = 6;
             ingBox.TextChanged += ingBox_TextChanged;
             // 
             // addButton1
@@ -145,7 +154,7 @@ namespace KusinApp
             addButton1.FlatStyle = FlatStyle.Flat;
             addButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             addButton1.ForeColor = Color.FromArgb(0, 48, 73);
-            addButton1.Location = new Point(246, 39);
+            addButton1.Location = new Point(258, 48);
             addButton1.Name = "addButton1";
             addButton1.Size = new Size(59, 23);
             addButton1.TabIndex = 12;
@@ -159,7 +168,7 @@ namespace KusinApp
             ingIncrementer.BackColor = Color.Transparent;
             ingIncrementer.ButtonColor = Color.FromArgb(252, 191, 73);
             ingIncrementer.CornerRadius = 10;
-            ingIncrementer.Location = new Point(212, 23);
+            ingIncrementer.Location = new Point(224, 38);
             ingIncrementer.Name = "ingIncrementer";
             ingIncrementer.Size = new Size(28, 40);
             ingIncrementer.Step = 1;
@@ -172,7 +181,7 @@ namespace KusinApp
             label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(0, 48, 73);
             label4.ImageAlign = ContentAlignment.TopCenter;
-            label4.Location = new Point(13, 15);
+            label4.Location = new Point(24, 15);
             label4.Name = "label4";
             label4.Size = new Size(147, 21);
             label4.TabIndex = 8;
@@ -203,7 +212,7 @@ namespace KusinApp
             searchPanel.Controls.Add(recipeListView);
             searchPanel.Controls.Add(label1);
             searchPanel.Controls.Add(label3);
-            searchPanel.Location = new Point(3, 132);
+            searchPanel.Location = new Point(3, 129);
             searchPanel.Margin = new Padding(2, 1, 2, 1);
             searchPanel.Name = "searchPanel";
             searchPanel.Size = new Size(338, 432);
@@ -213,23 +222,34 @@ namespace KusinApp
             // 
             // AIReccomendationView
             // 
-            AIReccomendationView.Location = new Point(24, 69);
+            AIReccomendationView.BorderStyle = BorderStyle.None;
+            AIReccomendationView.Font = new Font("Segoe UI", 10F);
+            AIReccomendationView.ForeColor = Color.FromArgb(0, 48, 73);
+            AIReccomendationView.Location = new Point(22, 39);
             AIReccomendationView.Name = "AIReccomendationView";
-            AIReccomendationView.Size = new Size(292, 109);
+            AIReccomendationView.Size = new Size(292, 148);
             AIReccomendationView.TabIndex = 13;
             AIReccomendationView.UseCompatibleStateImageBehavior = false;
             // 
             // recipeListView
             // 
+            recipeListView.View = View.Details;
+            recipeListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            recipeListView.Scrollable = true;
+            recipeListView.HideSelection = false;
+            recipeListView.BorderStyle = BorderStyle.None;
             recipeListView.Columns.AddRange(new ColumnHeader[] { recipeColumn });
-            recipeListView.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            recipeListView.Cursor = Cursors.Hand;
+            recipeListView.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            recipeListView.ForeColor = Color.FromArgb(0, 48, 73);
             recipeListView.FullRowSelect = true;
+            recipeListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            recipeListView.HoverSelection = true;
             recipeListView.Location = new Point(24, 216);
             recipeListView.Name = "recipeListView";
             recipeListView.Size = new Size(292, 199);
             recipeListView.TabIndex = 14;
             recipeListView.UseCompatibleStateImageBehavior = false;
-            recipeListView.View = View.Details;
             recipeListView.SelectedIndexChanged += recipeListView_SelectedIndexChanged;
             // 
             // recipeColumn
@@ -243,7 +263,7 @@ namespace KusinApp
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(0, 48, 73);
             label1.ImageAlign = ContentAlignment.TopCenter;
-            label1.Location = new Point(24, 45);
+            label1.Location = new Point(24, 14);
             label1.Name = "label1";
             label1.Size = new Size(188, 21);
             label1.TabIndex = 12;
@@ -349,9 +369,9 @@ namespace KusinApp
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
+            Controls.Add(searchPanel);
             Controls.Add(searchBox);
             Controls.Add(SearchRecipeButton);
-            Controls.Add(searchPanel);
             Controls.Add(defaultPanel);
             Name = "MainPage";
             StartPosition = FormStartPosition.CenterScreen;
@@ -391,7 +411,7 @@ namespace KusinApp
         private PictureBox pictureBox5;
         private PictureBox pictureBox6;
         private Label label1;
-        private TextBox ingBox;
+        private KusinApp.Services.RoundedTextBox ingBox;
         private ContextMenuStrip contextMenuStrip1;
         private ListView AIReccomendationView;
         public ListView recipeListView;
