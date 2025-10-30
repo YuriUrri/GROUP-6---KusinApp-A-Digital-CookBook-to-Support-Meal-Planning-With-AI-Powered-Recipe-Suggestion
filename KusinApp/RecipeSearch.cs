@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,16 @@ namespace KusinApp
 {
     public partial class RecipeSearch : Form
     {
+        MainPage main = new MainPage();
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
         string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
         public RecipeSearch()
         {
             InitializeComponent();
+            
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
 

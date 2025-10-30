@@ -51,7 +51,7 @@
             listView1.Location = new Point(33, 183);
             listView1.Margin = new Padding(3, 4, 3, 4);
             listView1.Name = "listView1";
-            listView1.Size = new Size(319, 469);
+            listView1.Size = new Size(280, 353);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
@@ -90,54 +90,47 @@
             // 
             // pbInventory
             // 
-            pbInventory.AccessibleDescription = "go to Inventory page";
-            pbInventory.BackColor = Color.FromArgb(0, 48, 73);
-            pbInventory.Cursor = Cursors.Hand;
-            pbInventory.Image = (Image)resources.GetObject("pbInventory.Image");
-            pbInventory.Location = new Point(298, 704);
-            pbInventory.Margin = new Padding(3, 4, 3, 4);
-            pbInventory.Name = "pbInventory";
-            pbInventory.Size = new Size(35, 33);
-            pbInventory.SizeMode = PictureBoxSizeMode.AutoSize;
-            pbInventory.TabIndex = 25;
-            pbInventory.TabStop = false;
-            pbInventory.Click += pbInventory_Click;
+            pictureBox6.BackColor = Color.FromArgb(0, 48, 73);
+            pictureBox6.Cursor = Cursors.Hand;
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(261, 528);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(35, 33);
+            pictureBox6.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox6.TabIndex = 25;
+            pictureBox6.TabStop = false;
+            pictureBox6.Click += pictureBox6_Click;
             // 
             // pbRecipe
             // 
-            pbRecipe.AccessibleDescription = " go to Recipe page";
-            pbRecipe.BackColor = Color.FromArgb(0, 48, 73);
-            pbRecipe.Cursor = Cursors.Hand;
-            pbRecipe.Image = (Image)resources.GetObject("pbRecipe.Image");
-            pbRecipe.Location = new Point(178, 704);
-            pbRecipe.Margin = new Padding(3, 4, 3, 4);
-            pbRecipe.Name = "pbRecipe";
-            pbRecipe.Size = new Size(35, 33);
-            pbRecipe.SizeMode = PictureBoxSizeMode.AutoSize;
-            pbRecipe.TabIndex = 24;
-            pbRecipe.TabStop = false;
-            pbRecipe.Click += pbRecipe_Click;
+            pictureBox5.BackColor = Color.FromArgb(0, 48, 73);
+            pictureBox5.Cursor = Cursors.Hand;
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(156, 528);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(35, 33);
+            pictureBox5.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox5.TabIndex = 24;
+            pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
             // 
             // pbHome
             // 
-            pbHome.AccessibleDescription = "to go to home page";
-            pbHome.BackColor = Color.FromArgb(0, 48, 73);
-            pbHome.Cursor = Cursors.Hand;
-            pbHome.Image = (Image)resources.GetObject("pbHome.Image");
-            pbHome.Location = new Point(61, 704);
-            pbHome.Margin = new Padding(3, 4, 3, 4);
-            pbHome.Name = "pbHome";
-            pbHome.Size = new Size(35, 33);
-            pbHome.SizeMode = PictureBoxSizeMode.AutoSize;
-            pbHome.TabIndex = 23;
-            pbHome.TabStop = false;
-            pbHome.Click += pbHome_Click;
+            pictureBox4.BackColor = Color.FromArgb(0, 48, 73);
+            pictureBox4.Cursor = Cursors.Hand;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(53, 528);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(35, 33);
+            pictureBox4.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox4.TabIndex = 23;
+            pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(-9, 675);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Location = new Point(-8, 506);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(415, 112);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -149,10 +142,10 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
-            ClientSize = new Size(393, 771);
-            Controls.Add(pbInventory);
-            Controls.Add(pbRecipe);
-            Controls.Add(pbHome);
+            ClientSize = new Size(344, 578);
+            Controls.Add(pictureBox6);
+            Controls.Add(pictureBox5);
+            Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
             Controls.Add(label1);
             Controls.Add(pictureBox2);

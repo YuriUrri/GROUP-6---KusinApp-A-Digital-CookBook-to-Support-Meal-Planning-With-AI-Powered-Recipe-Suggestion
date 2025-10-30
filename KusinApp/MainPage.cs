@@ -12,15 +12,54 @@ namespace KusinApp
         public MainPage()
         {
             InitializeComponent();
-
         }
 
+        private Panel lastActivePanel;
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadUserInventory();
             SetupAutoComplete();
             help.dbConnection();
+            LoadRecipes();
 
+        }
+
+        private void LoadRecipes(string searchTerm = "")
+        {
+            string query = string.IsNullOrWhiteSpace(searchTerm)
+                ? "SELECT recipe_id, recipe_name, recipe_ingredient_list, recipe_steps FROM kusinapp.recipe_list"
+                : "SELECT recipe_id, recipe_name, recipe_ingredient_list, recipe_steps FROM kusinapp.recipe_list WHERE recipe_name LIKE @search OR recipe_ingredient_list LIKE @search";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        if (!string.IsNullOrWhiteSpace(searchTerm))
+                            cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            recipeListView.Items.Clear();
+
+                            while (reader.Read())
+                            {
+                                ListViewItem item = new ListViewItem(reader["recipe_name"].ToString());
+                                item.SubItems.Add(reader["recipe_ingredient_list"].ToString());
+                                item.SubItems.Add(reader["recipe_steps"].ToString());
+                                item.Tag = reader["recipe_id"]; // store ID
+                                recipeListView.Items.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading recipes: " + ex.Message);
+            }
         }
         private void LoadUserInventory()
         {
@@ -79,6 +118,7 @@ namespace KusinApp
             }
         }
 
+
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -97,53 +137,6 @@ namespace KusinApp
             recipe.Show();
             this.Hide();
 
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string ingredient = ingBox.Text.Trim();
-            string userID = help.GetUserID(login.GetUser(), login.GetPass());
-            string quantity = ingCountIncrementer.Value.ToString();
-
-            if (string.IsNullOrEmpty(userID))
-            {
-                MessageBox.Show("User not found. Please log in again.");
-                return;
-            }
-
-            if (quantity == "0")
-            {
-                MessageBox.Show("Please enter a quantity greater than zero.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(ingredient))
-            {
-                MessageBox.Show("Please enter an ingredient name.");
-                return;
-            }
-
-
-            string ingredientID = GetIngredientID(ingredient);
-
-            if (string.IsNullOrEmpty(ingredientID))
-            {
-                MessageBox.Show($"The ingredient '{ingredient}' was not found.\nPlease select a valid ingredient.");
-                return;
-            }
-
-
-            insertIngredient(ingredient, ingredientID, userID, quantity);
-            LoadUserInventory();
         }
 
 
@@ -232,11 +225,13 @@ namespace KusinApp
             else
             {
                 showPanel();
+                LoadRecipes(searchBox.Text.Trim());
             }
-            //plus actual search features
+
         }
         private void showPanel()
         {
+            lastActivePanel = defaultPanel;
             searchPanel.Visible = true;
             searchPanel.BringToFront();
             defaultPanel.Visible = false;
@@ -246,7 +241,10 @@ namespace KusinApp
             defaultPanel.Visible = true;
             defaultPanel.BringToFront();
             searchPanel.Visible = false;
+            ingBox.BringToFront();
+
         }
+
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -262,7 +260,40 @@ namespace KusinApp
 
         private void roundedButton1_Click(object sender, EventArgs e)
         {
+            string ingredient = ingBox.Text.Trim();
+            string userID = help.GetUserID(login.GetUser(), login.GetPass());
+            string quantity = ingIncrementer.Value.ToString();
 
+            if (string.IsNullOrEmpty(userID))
+            {
+                MessageBox.Show("User not found. Please log in again.");
+                return;
+            }
+
+            if (quantity == "0")
+            {
+                MessageBox.Show("Please enter a quantity greater than zero.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(ingredient))
+            {
+                MessageBox.Show("Please enter an ingredient name.");
+                return;
+            }
+
+
+            string ingredientID = GetIngredientID(ingredient);
+
+            if (string.IsNullOrEmpty(ingredientID))
+            {
+                MessageBox.Show($"The ingredient '{ingredient}' was not found.\nPlease select a valid ingredient.");
+                return;
+            }
+
+
+            insertIngredient(ingredient, ingredientID, userID, quantity);
+            LoadUserInventory();
         }
 
         private void roundedTextBox1_TextChanged(object sender, EventArgs e)
@@ -299,6 +330,78 @@ namespace KusinApp
             RecipeSearch recipe = new RecipeSearch();
             recipe.Show();
             this.Hide();
+        }
+
+
+
+        private void ingIncrementer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ingBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (recipeListView.SelectedItems.Count == 0)
+                return;
+
+            ListViewItem selected = recipeListView.SelectedItems[0];
+            string recipeName = selected.SubItems[0].Text;
+            string ingredients = selected.SubItems[1].Text;
+            string steps = selected.SubItems[2].Text;
+
+            ShowRecipeDetails(recipeName, ingredients, steps);
+        }
+
+        private void ShowRecipeDetails(string name, string ingredients, string steps)
+        {
+            
+        }
+
+        public void recipeListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (recipeListView.SelectedItems.Count == 0)
+                return;
+
+            // get selected recipe
+            ListViewItem selected = recipeListView.SelectedItems[0];
+            string recipeName = selected.SubItems[0].Text;
+            string ingredients = selected.SubItems[1].Text;
+            string steps = selected.SubItems[2].Text;
+
+            // open RecipeDisplay form with details
+            RecipeDisplay display = new RecipeDisplay(recipeName, ingredients, steps);
+            display.Show();
+
+            this.Hide();
+
+
+        }
+
+        
+
+        private void recipeDetailPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void recipeDetailPanel_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void recipeNameLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
