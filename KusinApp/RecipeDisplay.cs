@@ -37,6 +37,7 @@ namespace KusinApp
             recipeNameLabel.Text = recipeName;
             recipeIngredientsLabel.Text = recipeIngredients;
             recipeStepsLabel.Text = recipeSteps;
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

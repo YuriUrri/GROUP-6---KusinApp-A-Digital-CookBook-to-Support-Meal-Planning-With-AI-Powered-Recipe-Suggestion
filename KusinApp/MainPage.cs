@@ -14,6 +14,8 @@ namespace KusinApp
         public MainPage()
         {
             InitializeComponent();
+
+
         }
 
         private Panel lastActivePanel;
@@ -23,7 +25,8 @@ namespace KusinApp
             SetupAutoComplete();
             help.dbConnection();
             LoadRecipes();
-            aiHelper.aiSuggest(recipeSuggestionBox);
+            //aiHelper.aiSuggest(recipeSuggestionBox);
+
         }
 
         /**LoadRecipes @param searchTerm - method with optional search term
@@ -58,6 +61,8 @@ namespace KusinApp
                                 item.SubItems.Add(reader["recipe_steps"].ToString());
                                 item.Tag = reader["recipe_id"]; // store ID
                                 recipeListView.Items.Add(item);
+
+
                             }
                         }
                     }
@@ -93,7 +98,7 @@ namespace KusinApp
         {
             try
             {
-                string query = "SELECT ingredient_name FROM ingredient_list";
+                string query = "SELECT ingredient_name FROM kusinapp.ingredient_list";
 
                 DataTable dt = help.displayRecords(query);
 
@@ -213,41 +218,57 @@ namespace KusinApp
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e) //recipe suggestion box
         {
-
+            searchBox.Text = recipeSuggestionBox.SelectedItems[0].Text;
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(searchBox.Text))
-            {
-                showDefault();
-            }
-            else
-            {
-                showPanel();
-                LoadRecipes(searchBox.Text.Trim());
-                aiHelper.aiSuggest(AIReccomendationView);
-            }
+            //if (string.IsNullOrEmpty(searchBox.Text))
+            //{
+            //    showDefault();
+            //}
+            //else
+            //{
+            //    showPanel();
+            //    LoadRecipes(searchBox.Text.Trim());
+            //    aiHelper.aiSuggest(AIReccomendationView);
+
 
         }
+
+
         private void showPanel()
         {
-            lastActivePanel = defaultPanel;
-            searchPanel.Visible = true;
-            searchPanel.BringToFront();
-            defaultPanel.Visible = false;
+            //lastActivePanel = defaultPanel;
+            //searchPanel.Visible = true;
+            //searchPanel.BringToFront();
+            //defaultPanel.Visible = false;
+            if (!searchPanel.Visible)
+            {
+                searchPanel.Visible = true;
+                defaultPanel.Visible = false;
+                searchPanel.BringToFront();
+            }
         }
         private void showDefault()
         {
-            defaultPanel.Visible = true;
-            defaultPanel.BringToFront();
-            searchPanel.Visible = false;
+            //defaultPanel.Visible = true;
+            //defaultPanel.BringToFront();
+            //searchPanel.Visible = false;
+            //ingBox.BringToFront();
+
+            if (!defaultPanel.Visible)
+            {
+                defaultPanel.Visible = true;
+                searchPanel.Visible = false;
+                defaultPanel.BringToFront();
+            }
+
+            // Ensure ingBox is clickable and on top
             ingBox.BringToFront();
+            ingBox.Focus();
 
         }
 
@@ -355,57 +376,75 @@ namespace KusinApp
 
         }
 
-        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (recipeListView.SelectedItems.Count == 0)
-                return;
 
-            ListViewItem selected = recipeListView.SelectedItems[0];
-            string recipeName = selected.SubItems[0].Text;
-            string ingredients = selected.SubItems[1].Text;
-            string steps = selected.SubItems[2].Text;
-
-            ShowRecipeDetails(recipeName, ingredients, steps);
-        }
 
         private void ShowRecipeDetails(string name, string ingredients, string steps)
         {
-            
+
         }
 
         public void recipeListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (recipeListView.SelectedItems.Count == 0)
+            listViewClick((ListView)sender);
+
+
+        }
+
+        public void listViewClick(ListView listview)
+        {
+            if (listview.SelectedItems.Count == 0)
                 return;
 
-            // get selected recipe
-            ListViewItem selected = recipeListView.SelectedItems[0];
+            ListViewItem selected = listview.SelectedItems[0];
             string recipeName = selected.SubItems[0].Text;
-            string ingredients = selected.SubItems[1].Text;
-            string steps = selected.SubItems[2].Text;
+            string ingredients = "";
+            string steps = "";
 
-            // open RecipeDisplay form with details
+            // Check which listview triggered this
+            if (listview == recipeListView)
+            {
+                // Normal database recipes (3 columns)
+                if (selected.SubItems.Count > 1)
+                    ingredients = selected.SubItems[1].Text;
+
+                if (selected.SubItems.Count > 2)
+                    steps = selected.SubItems[2].Text;
+            }
+
+
+            // Open the recipe display window (or panel)
             RecipeDisplay display = new RecipeDisplay(recipeName, ingredients, steps);
             display.Show();
 
             this.Hide();
-
-
         }
 
-        private void recipeDetailPanel_Paint(object sender, PaintEventArgs e)
+        private void AIReccomendationView_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            searchBox.Text = AIReccomendationView.SelectedItems[0].Text;
         }
 
-        private void recipeDetailPanel_Paint_1(object sender, PaintEventArgs e)
+        private void MainPage_Click(object sender, EventArgs e)
         {
-
+            recipeListView.SelectedItems.Clear();
+            recipeSuggestionBox.SelectedItems.Clear();
         }
 
-        private void recipeNameLabel_Click(object sender, EventArgs e)
+        private void searchBox_TextChanged_1(object sender, EventArgs e)
         {
+            if (searchBox.Focused == false)
+                return;
 
+            if (string.IsNullOrWhiteSpace(searchBox.Text))
+            {
+                showDefault();
+            }
+            else
+            {
+                showPanel();
+                LoadRecipes(searchBox.Text.Trim());
+                //aiHelper.aiSuggest(AIReccomendationView);
+            }
         }
     }
 }

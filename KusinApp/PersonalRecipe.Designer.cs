@@ -134,7 +134,7 @@
             pictureBox3.TabIndex = 22;
             pictureBox3.TabStop = false;
             // 
-            // RecipeSearch
+            // PersonalRecipe
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -148,7 +148,8 @@
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(listView1);
-            Name = "RecipeSearch";
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "PersonalRecipe";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RecipeSearch";
             Load += RecipeSearch_Load;
