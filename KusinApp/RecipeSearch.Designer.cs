@@ -90,42 +90,42 @@
             // 
             // pbInventory
             // 
-            pictureBox6.BackColor = Color.FromArgb(0, 48, 73);
-            pictureBox6.Cursor = Cursors.Hand;
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(261, 528);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(35, 33);
-            pictureBox6.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox6.TabIndex = 25;
-            pictureBox6.TabStop = false;
-            pictureBox6.Click += pictureBox6_Click;
+            pbInventory.BackColor = Color.FromArgb(0, 48, 73);
+            pbInventory.Cursor = Cursors.Hand;
+            pbInventory.Image = (Image)resources.GetObject("pbInventory.Image");
+            pbInventory.Location = new Point(261, 528);
+            pbInventory.Name = "pbInventory";
+            pbInventory.Size = new Size(35, 33);
+            pbInventory.SizeMode = PictureBoxSizeMode.AutoSize;
+            pbInventory.TabIndex = 25;
+            pbInventory.TabStop = false;
+            pbInventory.Click += pbInventory_Click;
             // 
             // pbRecipe
             // 
-            pictureBox5.BackColor = Color.FromArgb(0, 48, 73);
-            pictureBox5.Cursor = Cursors.Hand;
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(156, 528);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(35, 33);
-            pictureBox5.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox5.TabIndex = 24;
-            pictureBox5.TabStop = false;
-            pictureBox5.Click += pictureBox5_Click;
+            pbRecipe.BackColor = Color.FromArgb(0, 48, 73);
+            pbRecipe.Cursor = Cursors.Hand;
+            pbRecipe.Image = (Image)resources.GetObject("pbRecipe.Image");
+            pbRecipe.Location = new Point(156, 528);
+            pbRecipe.Name = "pbRecipe";
+            pbRecipe.Size = new Size(35, 33);
+            pbRecipe.SizeMode = PictureBoxSizeMode.AutoSize;
+            pbRecipe.TabIndex = 24;
+            pbRecipe.TabStop = false;
+            pbRecipe.Click += pbRecipe_Click;
             // 
             // pbHome
             // 
-            pictureBox4.BackColor = Color.FromArgb(0, 48, 73);
-            pictureBox4.Cursor = Cursors.Hand;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(53, 528);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(35, 33);
-            pictureBox4.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox4.TabIndex = 23;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
+            pbHome.BackColor = Color.FromArgb(0, 48, 73);
+            pbHome.Cursor = Cursors.Hand;
+            pbHome.Image = (Image)resources.GetObject("pbHome.Image");
+            pbHome.Location = new Point(53, 528);
+            pbHome.Name = "pbHome";
+            pbHome.Size = new Size(35, 33);
+            pbHome.SizeMode = PictureBoxSizeMode.AutoSize;
+            pbHome.TabIndex = 23;
+            pbHome.TabStop = false;
+            pbHome.Click += pbHome_Click;
             // 
             // pictureBox3
             // 
@@ -143,9 +143,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
             ClientSize = new Size(344, 578);
-            Controls.Add(pictureBox6);
-            Controls.Add(pictureBox5);
-            Controls.Add(pictureBox4);
+            Controls.Add(pbInventory);
+            Controls.Add(pbRecipe);
+            Controls.Add(pbHome);
             Controls.Add(pictureBox3);
             Controls.Add(label1);
             Controls.Add(pictureBox2);
@@ -155,7 +155,7 @@
             Name = "RecipeSearch";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RecipeSearch";
-            Load += RecipeSearch_Load;
+            Load += SearchRecipe_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbInventory).EndInit();
