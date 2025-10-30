@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace KusinApp
 {
-    public partial class RecipeSearch : Form
+    public partial class PersonalRecipe : Form
     {
         MainPage main = new MainPage();
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
         string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
-        public RecipeSearch()
+        public PersonalRecipe()
         {
             InitializeComponent();
             
@@ -52,7 +52,7 @@ namespace KusinApp
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            RecipeSearch recipe = new RecipeSearch();
+            PersonalRecipe recipe = new PersonalRecipe();
             recipe.Show();
             this.Hide();
         }
