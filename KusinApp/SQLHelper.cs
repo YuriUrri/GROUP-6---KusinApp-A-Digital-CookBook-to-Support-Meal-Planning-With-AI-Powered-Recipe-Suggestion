@@ -279,5 +279,61 @@ namespace KusinApp
             return dt;
         }
 
+        // inside SQLHelper class
+
+        /// <summary>
+        /// Check if a username already exists in user_login table
+        /// </summary>
+        public bool UserExists(string username)
+        {
+            string query = "SELECT COUNT(1) FROM kusinapp.user_login WHERE LOWER(TRIM(username)) = LOWER(TRIM(@username));";
+            try
+            {
+                using (var conn = new MySqlConnection(strConn))
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && int.TryParse(result.ToString(), out int count))
+                        return count > 0;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking username: " + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Add a new user to user_login table. Returns true on success.
+        /// NOTE: stores password in plain text to remain compatible with existing ValidateLogin.
+        /// Consider hashing passwords for production.
+        /// </summary>
+        public bool AddUser(string username, string password)
+        {
+            string query = @"INSERT INTO kusinapp.user_login (username, password) VALUES (@username, @password);";
+            try
+            {
+                using (var conn = new MySqlConnection(strConn))
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", username.Trim());
+                    cmd.Parameters.AddWithValue("@password", password.Trim());
+                    conn.Open();
+                    int rows = cmd.ExecuteNonQuery();
+                    return rows > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding user: " + ex.Message);
+                return false;
+            }
+        }
+
+
     }
 }
