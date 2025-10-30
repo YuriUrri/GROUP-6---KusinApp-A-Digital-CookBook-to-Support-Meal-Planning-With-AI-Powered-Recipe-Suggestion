@@ -446,6 +446,16 @@ namespace KusinApp
                 //aiHelper.aiSuggest(AIReccomendationView);
             }
         }
+
+        private void navBar1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutButton1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
