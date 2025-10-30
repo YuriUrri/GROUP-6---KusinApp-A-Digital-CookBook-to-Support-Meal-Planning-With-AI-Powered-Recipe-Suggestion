@@ -38,6 +38,7 @@ namespace KusinApp
             recipeSuggestionBox = new ListView();
             RecipeNameDefaultPanel = new ColumnHeader();
             defaultPanel = new Panel();
+            textBox1 = new TextBox();
             ingBox = new TextBox();
             addButton1 = new KusinApp.Services.RoundedButton();
             ingIncrementer = new KusinApp.Services.IncrementerButton();
@@ -53,9 +54,11 @@ namespace KusinApp
             searchBox = new TextBox();
             navBar1 = new KusinApp.Components.NavBar();
             logoutButton1 = new KusinApp.Components.LogoutButton();
+            pictureBox2 = new PictureBox();
             defaultPanel.SuspendLayout();
             searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // SearchRecipeButton
@@ -119,6 +122,7 @@ namespace KusinApp
             // 
             // defaultPanel
             // 
+            defaultPanel.Controls.Add(textBox1);
             defaultPanel.Controls.Add(ingBox);
             defaultPanel.Controls.Add(addButton1);
             defaultPanel.Controls.Add(ingIncrementer);
@@ -132,12 +136,24 @@ namespace KusinApp
             defaultPanel.Size = new Size(338, 429);
             defaultPanel.TabIndex = 14;
             // 
+            // textBox1
+            // 
+            textBox1.ForeColor = Color.FromArgb(0, 48, 73);
+            textBox1.Location = new Point(187, 49);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(36, 23);
+            textBox1.TabIndex = 24;
+            textBox1.Text = "0";
+            textBox1.TextAlign = HorizontalAlignment.Center;
+            textBox1.TextChanged += textBox1_TextChanged_1;
+            // 
             // ingBox
             // 
             ingBox.Location = new Point(24, 48);
             ingBox.Name = "ingBox";
-            ingBox.Size = new Size(199, 23);
+            ingBox.Size = new Size(157, 23);
             ingBox.TabIndex = 23;
+            ingBox.TextChanged += ingBox_TextChanged_1;
             // 
             // addButton1
             // 
@@ -163,7 +179,7 @@ namespace KusinApp
             ingIncrementer.BackColor = Color.Transparent;
             ingIncrementer.ButtonColor = Color.FromArgb(252, 191, 73);
             ingIncrementer.CornerRadius = 10;
-            ingIncrementer.Location = new Point(224, 38);
+            ingIncrementer.Location = new Point(224, 39);
             ingIncrementer.Name = "ingIncrementer";
             ingIncrementer.Size = new Size(28, 40);
             ingIncrementer.Step = 1;
@@ -280,10 +296,10 @@ namespace KusinApp
             // 
             // searchBox
             // 
-            searchBox.Location = new Point(26, 101);
+            searchBox.Location = new Point(62, 101);
             searchBox.Name = "searchBox";
             searchBox.PlaceholderText = "Search Recipes";
-            searchBox.Size = new Size(208, 23);
+            searchBox.Size = new Size(172, 23);
             searchBox.TabIndex = 24;
             searchBox.TextChanged += searchBox_TextChanged_1;
             // 
@@ -299,18 +315,28 @@ namespace KusinApp
             // logoutButton1
             // 
             logoutButton1.BackColor = Color.Transparent;
-            logoutButton1.Location = new Point(27, 34);
+            logoutButton1.Location = new Point(18, 35);
             logoutButton1.Name = "logoutButton1";
             logoutButton1.Size = new Size(38, 38);
             logoutButton1.TabIndex = 26;
             logoutButton1.Load += logoutButton1_Load;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(27, 101);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(29, 24);
+            pictureBox2.TabIndex = 27;
+            pictureBox2.TabStop = false;
             // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
-            ClientSize = new Size(343, 659);
+            ClientSize = new Size(339, 659);
+            Controls.Add(pictureBox2);
             Controls.Add(logoutButton1);
             Controls.Add(navBar1);
             Controls.Add(searchBox);
@@ -330,6 +356,7 @@ namespace KusinApp
             searchPanel.ResumeLayout(false);
             searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -357,5 +384,7 @@ namespace KusinApp
         private TextBox searchBox;
         private Components.NavBar navBar1;
         private Components.LogoutButton logoutButton1;
+        private TextBox textBox1;
+        private PictureBox pictureBox2;
     }
 }
