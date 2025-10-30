@@ -1,4 +1,5 @@
-﻿using KusinApp;
+﻿using DotNetEnv;
+using KusinApp;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -8,6 +9,7 @@ namespace KusinApp
     {
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
+        aiHelper aiHelper = new aiHelper();
         string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
         public MainPage()
         {
@@ -21,9 +23,14 @@ namespace KusinApp
             SetupAutoComplete();
             help.dbConnection();
             LoadRecipes();
-
+            aiHelper.aiSuggest(recipeSuggestionBox);
         }
 
+        /**LoadRecipes @param searchTerm - method with optional search term
+         * 
+         * Displays recipes from the database into the list view.
+         * 
+         */
         private void LoadRecipes(string searchTerm = "")
         {
             string query = string.IsNullOrWhiteSpace(searchTerm)
@@ -86,9 +93,7 @@ namespace KusinApp
         {
             try
             {
-
                 string query = "SELECT ingredient_name FROM ingredient_list";
-
 
                 DataTable dt = help.displayRecords(query);
 
@@ -133,7 +138,7 @@ namespace KusinApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            RecipeSearch recipe = new RecipeSearch();
+            PersonalRecipe recipe = new PersonalRecipe();
             recipe.Show();
             this.Hide();
 
@@ -226,6 +231,7 @@ namespace KusinApp
             {
                 showPanel();
                 LoadRecipes(searchBox.Text.Trim());
+                aiHelper.aiSuggest(AIReccomendationView);
             }
 
         }
@@ -327,7 +333,7 @@ namespace KusinApp
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            RecipeSearch recipe = new RecipeSearch();
+            PersonalRecipe recipe = new PersonalRecipe();
             recipe.Show();
             this.Hide();
         }
@@ -386,8 +392,6 @@ namespace KusinApp
 
 
         }
-
-        
 
         private void recipeDetailPanel_Paint(object sender, PaintEventArgs e)
         {

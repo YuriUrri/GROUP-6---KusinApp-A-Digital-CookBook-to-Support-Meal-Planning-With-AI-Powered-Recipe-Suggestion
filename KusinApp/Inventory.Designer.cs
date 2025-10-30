@@ -53,6 +53,7 @@
             // 
             // inventoryDG
             // 
+            inventoryDG.AllowUserToAddRows = false;
             inventoryDG.AllowUserToResizeColumns = false;
             inventoryDG.AllowUserToResizeRows = false;
             inventoryDG.BackgroundColor = Color.White;
@@ -63,7 +64,7 @@
             inventoryDG.Name = "inventoryDG";
             inventoryDG.ReadOnly = true;
             inventoryDG.RowHeadersVisible = false;
-            inventoryDG.Size = new Size(276, 239);
+            inventoryDG.Size = new Size(276, 354);
             inventoryDG.TabIndex = 0;
             inventoryDG.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -90,17 +91,15 @@
             nameTextBox.BackColor = Color.White;
             nameTextBox.BorderStyle = BorderStyle.None;
             nameTextBox.CornerRadius = 10;
-            nameTextBox.Enabled = false;
             nameTextBox.ForeColor = Color.Gray;
             nameTextBox.LeftMargin = 20;
-            nameTextBox.Location = new Point(137, 135);
+            nameTextBox.Location = new Point(156, 135);
             nameTextBox.Margin = new Padding(2, 1, 2, 1);
             nameTextBox.Multiline = true;
             nameTextBox.Name = "nameTextBox";
             nameTextBox.PlaceholderColor = Color.Gray;
             nameTextBox.PlaceholderText = " ";
-            nameTextBox.ReadOnly = true;
-            nameTextBox.Size = new Size(170, 23);
+            nameTextBox.Size = new Size(151, 23);
             nameTextBox.TabIndex = 9;
             nameTextBox.Text = " ";
             nameTextBox.TopPadding = 6;
@@ -108,11 +107,12 @@
             // 
             // quantityTextBox
             // 
-            quantityTextBox.Location = new Point(157, 408);
+            quantityTextBox.Enabled = false;
+            quantityTextBox.Location = new Point(140, 135);
             quantityTextBox.Margin = new Padding(2, 1, 2, 1);
             quantityTextBox.Name = "quantityTextBox";
-            quantityTextBox.PlaceholderText = "Quantity textbox";
-            quantityTextBox.Size = new Size(146, 23);
+            quantityTextBox.PlaceholderText = "0";
+            quantityTextBox.Size = new Size(25, 23);
             quantityTextBox.TabIndex = 10;
             quantityTextBox.TextChanged += textBox2_TextChanged;
             // 
@@ -180,7 +180,7 @@
             pictureBox6.BackColor = Color.FromArgb(0, 48, 73);
             pictureBox6.Cursor = Cursors.Hand;
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(262, 457);
+            pictureBox6.Location = new Point(261, 602);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(35, 33);
             pictureBox6.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -193,7 +193,7 @@
             pictureBox5.BackColor = Color.FromArgb(0, 48, 73);
             pictureBox5.Cursor = Cursors.Hand;
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(157, 457);
+            pictureBox5.Location = new Point(156, 602);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(35, 33);
             pictureBox5.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -206,7 +206,7 @@
             pictureBox4.BackColor = Color.FromArgb(0, 48, 73);
             pictureBox4.Cursor = Cursors.Hand;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(54, 457);
+            pictureBox4.Location = new Point(53, 602);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(35, 33);
             pictureBox4.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -217,7 +217,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(-7, 435);
+            pictureBox3.Location = new Point(-8, 580);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(363, 84);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -230,7 +230,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
-            ClientSize = new Size(344, 507);
+            ClientSize = new Size(344, 659);
             Controls.Add(pictureBox6);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox4);

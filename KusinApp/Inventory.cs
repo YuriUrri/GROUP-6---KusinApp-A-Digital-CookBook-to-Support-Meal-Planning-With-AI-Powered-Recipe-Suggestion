@@ -220,7 +220,7 @@ namespace KusinApp
         }
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            RecipeSearch recipe = new RecipeSearch();
+            PersonalRecipe recipe = new PersonalRecipe();
             recipe.Show();
             this.Hide();
         }

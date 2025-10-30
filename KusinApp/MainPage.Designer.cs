@@ -31,7 +31,6 @@ namespace KusinApp
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             SearchRecipeButton = new KusinApp.Services.RoundedButton();
             itemList = new ListBox();
@@ -55,7 +54,6 @@ namespace KusinApp
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
             pictureBox6 = new PictureBox();
-            contextMenuStrip1 = new ContextMenuStrip(components);
             defaultPanel.SuspendLayout();
             searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -233,10 +231,6 @@ namespace KusinApp
             // 
             // recipeListView
             // 
-            recipeListView.View = View.Details;
-            recipeListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            recipeListView.Scrollable = true;
-            recipeListView.HideSelection = false;
             recipeListView.BorderStyle = BorderStyle.None;
             recipeListView.Columns.AddRange(new ColumnHeader[] { recipeColumn });
             recipeListView.Cursor = Cursors.Hand;
@@ -250,6 +244,7 @@ namespace KusinApp
             recipeListView.Size = new Size(292, 199);
             recipeListView.TabIndex = 14;
             recipeListView.UseCompatibleStateImageBehavior = false;
+            recipeListView.View = View.Details;
             recipeListView.SelectedIndexChanged += recipeListView_SelectedIndexChanged;
             // 
             // recipeColumn
@@ -352,11 +347,6 @@ namespace KusinApp
             pictureBox6.TabStop = false;
             pictureBox6.Click += pictureBox6_Click;
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -412,7 +402,6 @@ namespace KusinApp
         private PictureBox pictureBox6;
         private Label label1;
         private KusinApp.Services.RoundedTextBox ingBox;
-        private ContextMenuStrip contextMenuStrip1;
         private ListView AIReccomendationView;
         public ListView recipeListView;
         private ColumnHeader recipeColumn;

@@ -1,6 +1,6 @@
 ﻿namespace KusinApp
 {
-    partial class RecipeSearch
+    partial class PersonalRecipe
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecipeSearch));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PersonalRecipe));
             listView1 = new ListView();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
