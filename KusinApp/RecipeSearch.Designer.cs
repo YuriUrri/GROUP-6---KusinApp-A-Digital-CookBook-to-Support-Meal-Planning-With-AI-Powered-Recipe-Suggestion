@@ -47,6 +47,7 @@
             // 
             // listView1
             // 
+            listView1.BorderStyle = BorderStyle.None;
             listView1.ForeColor = Color.FromArgb(0, 48, 73);
             listView1.Location = new Point(29, 137);
             listView1.Name = "listView1";

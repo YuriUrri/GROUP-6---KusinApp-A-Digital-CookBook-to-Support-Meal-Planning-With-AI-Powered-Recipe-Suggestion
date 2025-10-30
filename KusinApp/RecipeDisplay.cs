@@ -14,7 +14,7 @@ namespace KusinApp
 {
     public partial class RecipeDisplay : Form
     {
-        
+
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
         string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
@@ -25,19 +25,11 @@ namespace KusinApp
         public RecipeDisplay(string name, string ingredients, string steps)
         {
             InitializeComponent();
-            
+
 
             recipeName = name;
             recipeIngredients = ingredients;
             recipeSteps = steps;
-        }
-
-        
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            MainPage mainPage = new MainPage();
-            mainPage.Show();
-            this.Hide();
         }
 
         private void RecipeDisplay_Load(object sender, EventArgs e)
@@ -45,6 +37,18 @@ namespace KusinApp
             recipeNameLabel.Text = recipeName;
             recipeIngredientsLabel.Text = recipeIngredients;
             recipeStepsLabel.Text = recipeSteps;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            MainPage mainPage = new MainPage();
+            mainPage.Show();
+            this.Hide();
+        }
+
+        private void recipeIngredientsLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
