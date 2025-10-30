@@ -110,6 +110,7 @@
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(recipeDetailPanel);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "RecipeDisplay";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RecipeDisplay";

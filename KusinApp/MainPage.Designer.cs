@@ -36,14 +36,15 @@ namespace KusinApp
             itemList = new ListBox();
             label2 = new Label();
             recipeSuggestionBox = new ListView();
+            RecipeNameDefaultPanel = new ColumnHeader();
             defaultPanel = new Panel();
-            ingBox = new KusinApp.Services.RoundedTextBox();
+            ingBox = new TextBox();
             addButton1 = new KusinApp.Services.RoundedButton();
             ingIncrementer = new KusinApp.Services.IncrementerButton();
             label4 = new Label();
-            searchBox = new KusinApp.Services.RoundedTextBox();
             searchPanel = new Panel();
             AIReccomendationView = new ListView();
+            Recipes = new ColumnHeader();
             recipeListView = new ListView();
             recipeColumn = new ColumnHeader();
             label1 = new Label();
@@ -54,6 +55,7 @@ namespace KusinApp
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
             pictureBox6 = new PictureBox();
+            searchBox = new TextBox();
             defaultPanel.SuspendLayout();
             searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -103,12 +105,23 @@ namespace KusinApp
             // 
             // recipeSuggestionBox
             // 
-            recipeSuggestionBox.Location = new Point(23, 249);
+            recipeSuggestionBox.Columns.AddRange(new ColumnHeader[] { RecipeNameDefaultPanel });
+            recipeSuggestionBox.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            recipeSuggestionBox.FullRowSelect = true;
+            recipeSuggestionBox.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            recipeSuggestionBox.Location = new Point(24, 249);
+            recipeSuggestionBox.MultiSelect = false;
             recipeSuggestionBox.Name = "recipeSuggestionBox";
-            recipeSuggestionBox.Size = new Size(293, 177);
+            recipeSuggestionBox.Size = new Size(292, 173);
             recipeSuggestionBox.TabIndex = 11;
             recipeSuggestionBox.UseCompatibleStateImageBehavior = false;
+            recipeSuggestionBox.View = View.Details;
             recipeSuggestionBox.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            // 
+            // RecipeNameDefaultPanel
+            // 
+            RecipeNameDefaultPanel.Text = "Recipe name";
+            RecipeNameDefaultPanel.Width = 500;
             // 
             // defaultPanel
             // 
@@ -127,20 +140,10 @@ namespace KusinApp
             // 
             // ingBox
             // 
-            ingBox.BorderStyle = BorderStyle.None;
-            ingBox.CornerRadius = 10;
-            ingBox.ForeColor = Color.Gray;
-            ingBox.LeftMargin = 20;
             ingBox.Location = new Point(24, 48);
-            ingBox.Multiline = true;
             ingBox.Name = "ingBox";
-            ingBox.PlaceholderColor = Color.Gray;
-            ingBox.PlaceholderText = "Enter text...";
-            ingBox.Size = new Size(194, 23);
-            ingBox.TabIndex = 22;
-            ingBox.Text = "Enter text...";
-            ingBox.TopPadding = 6;
-            ingBox.TextChanged += ingBox_TextChanged;
+            ingBox.Size = new Size(199, 23);
+            ingBox.TabIndex = 23;
             // 
             // addButton1
             // 
@@ -186,60 +189,54 @@ namespace KusinApp
             label4.Text = "ADD INGREDIENTS";
             label4.Click += label4_Click;
             // 
-            // searchBox
-            // 
-            searchBox.AutoCompleteMode = AutoCompleteMode.Suggest;
-            searchBox.BorderStyle = BorderStyle.None;
-            searchBox.CornerRadius = 10;
-            searchBox.ForeColor = Color.Gray;
-            searchBox.LeftMargin = 20;
-            searchBox.Location = new Point(27, 101);
-            searchBox.Multiline = true;
-            searchBox.Name = "searchBox";
-            searchBox.PlaceholderColor = Color.Gray;
-            searchBox.PlaceholderText = "Search Recipes";
-            searchBox.Size = new Size(207, 23);
-            searchBox.TabIndex = 14;
-            searchBox.Text = "Search Recipes";
-            searchBox.TopPadding = 10;
-            searchBox.TextChanged += searchBox_TextChanged;
-            // 
             // searchPanel
             // 
             searchPanel.Controls.Add(AIReccomendationView);
             searchPanel.Controls.Add(recipeListView);
             searchPanel.Controls.Add(label1);
             searchPanel.Controls.Add(label3);
-            searchPanel.Location = new Point(3, 129);
+            searchPanel.Location = new Point(3, 132);
             searchPanel.Margin = new Padding(2, 1, 2, 1);
             searchPanel.Name = "searchPanel";
-            searchPanel.Size = new Size(338, 432);
+            searchPanel.Size = new Size(338, 429);
             searchPanel.TabIndex = 15;
             searchPanel.Visible = false;
             searchPanel.Paint += searchPanel_Paint;
             // 
             // AIReccomendationView
             // 
+            AIReccomendationView.AccessibleName = "";
+            AIReccomendationView.AllowColumnReorder = true;
             AIReccomendationView.BorderStyle = BorderStyle.None;
-            AIReccomendationView.Font = new Font("Segoe UI", 10F);
+            AIReccomendationView.Columns.AddRange(new ColumnHeader[] { Recipes });
+            AIReccomendationView.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             AIReccomendationView.ForeColor = Color.FromArgb(0, 48, 73);
+            AIReccomendationView.FullRowSelect = true;
             AIReccomendationView.Location = new Point(22, 39);
+            AIReccomendationView.MultiSelect = false;
             AIReccomendationView.Name = "AIReccomendationView";
             AIReccomendationView.Size = new Size(292, 148);
             AIReccomendationView.TabIndex = 13;
             AIReccomendationView.UseCompatibleStateImageBehavior = false;
+            AIReccomendationView.View = View.Details;
+            AIReccomendationView.SelectedIndexChanged += AIReccomendationView_SelectedIndexChanged;
+            // 
+            // Recipes
+            // 
+            Recipes.Text = "Recipe Name";
+            Recipes.Width = 1000;
             // 
             // recipeListView
             // 
             recipeListView.BorderStyle = BorderStyle.None;
             recipeListView.Columns.AddRange(new ColumnHeader[] { recipeColumn });
             recipeListView.Cursor = Cursors.Hand;
-            recipeListView.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            recipeListView.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             recipeListView.ForeColor = Color.FromArgb(0, 48, 73);
             recipeListView.FullRowSelect = true;
             recipeListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             recipeListView.HoverSelection = true;
-            recipeListView.Location = new Point(24, 216);
+            recipeListView.Location = new Point(22, 223);
             recipeListView.Name = "recipeListView";
             recipeListView.Size = new Size(292, 199);
             recipeListView.TabIndex = 14;
@@ -347,12 +344,22 @@ namespace KusinApp
             pictureBox6.TabStop = false;
             pictureBox6.Click += pictureBox6_Click;
             // 
+            // searchBox
+            // 
+            searchBox.Location = new Point(26, 101);
+            searchBox.Name = "searchBox";
+            searchBox.PlaceholderText = "Search Recipes";
+            searchBox.Size = new Size(208, 23);
+            searchBox.TabIndex = 24;
+            searchBox.TextChanged += searchBox_TextChanged_1;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
             ClientSize = new Size(344, 659);
+            Controls.Add(searchBox);
             Controls.Add(pictureBox6);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox4);
@@ -360,13 +367,14 @@ namespace KusinApp
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(searchPanel);
-            Controls.Add(searchBox);
             Controls.Add(SearchRecipeButton);
             Controls.Add(defaultPanel);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "MainPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = " ";
             Load += Form1_Load;
+            Click += MainPage_Click;
             defaultPanel.ResumeLayout(false);
             defaultPanel.PerformLayout();
             searchPanel.ResumeLayout(false);
@@ -388,7 +396,6 @@ namespace KusinApp
         private ListView recipeSuggestionBox;
         private ImageList recipesImageList;
         private Panel defaultPanel;
-        private KusinApp.Services.RoundedTextBox searchBox;
         private Panel searchPanel;
         private Label label3;
         private Label label4;
@@ -401,9 +408,12 @@ namespace KusinApp
         private PictureBox pictureBox5;
         private PictureBox pictureBox6;
         private Label label1;
-        private KusinApp.Services.RoundedTextBox ingBox;
         private ListView AIReccomendationView;
         public ListView recipeListView;
         private ColumnHeader recipeColumn;
+        private TextBox ingBox;
+        private ColumnHeader Recipes;
+        private ColumnHeader RecipeNameDefaultPanel;
+        private TextBox searchBox;
     }
 }

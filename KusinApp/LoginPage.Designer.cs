@@ -327,6 +327,7 @@
             Controls.Add(txtUsername);
             Controls.Add(label1);
             Controls.Add(pictureBox2);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2, 1, 2, 1);
             Name = "LoginPage";
             StartPosition = FormStartPosition.CenterScreen;
