@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
+using DotNetEnv;
 
 namespace KusinApp
 {
@@ -17,10 +18,12 @@ namespace KusinApp
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
         string sql = "";
-        string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=kusinapp;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
+        string strConn;
         public Inventory()
         {
             InitializeComponent();
+            Env.Load();
+            strConn = Environment.GetEnvironmentVariable("DB_CONNECTION");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -117,6 +120,8 @@ namespace KusinApp
         private void button4_Click(object sender, EventArgs e)
         {
             updateInventory();
+            nameTextBox.Clear();
+            quantityTextBox.Clear();
         }
 
         private void updateInventory()
@@ -195,40 +200,12 @@ namespace KusinApp
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            LoginPage login = new LoginPage();
-            login.Show();
-            this.Hide();
-        }
-
         private void incrementerButton1_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            MainPage main = new MainPage();
-            main.Show();
-            this.Hide();
-        }
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            RecipeSearch recipe = new RecipeSearch();
-            recipe.Show();
-            this.Hide();
-        }
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            Inventory inv = new Inventory();
-            inv.Show();
-            this.Hide();
+            incrementerButton1.ValueChanged += (s, val) =>
+            {
+                quantityTextBox.Text = val.ToString();
+            };
         }
     }
 
