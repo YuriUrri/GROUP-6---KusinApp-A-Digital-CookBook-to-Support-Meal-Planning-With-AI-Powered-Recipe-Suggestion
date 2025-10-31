@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using DotNetEnv;
 
 namespace KusinApp
 {
@@ -16,7 +17,10 @@ namespace KusinApp
     {
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
-        string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
+
+
+        private string strConn;
+
         private string recipeName;
         private string recipeIngredients;
         private string recipeSteps;
@@ -27,6 +31,9 @@ namespace KusinApp
             recipeName = name;
             recipeIngredients = ingredients;
             recipeSteps = steps;
+
+            Env.Load();
+            strConn = Environment.GetEnvironmentVariable("DB_CONNECTION");
         }
 
         private void RecipeDisplay_Load(object sender, EventArgs e)

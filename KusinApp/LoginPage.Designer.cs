@@ -72,9 +72,9 @@
             txtUsername.Margin = new Padding(2, 1, 2, 1);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "Enter Username";
             txtUsername.Size = new Size(215, 23);
             txtUsername.TabIndex = 3;
-            txtUsername.Text = "Enter Username";
             txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // txtPassword
@@ -87,9 +87,9 @@
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
+            txtPassword.PlaceholderText = "Enter Password";
             txtPassword.Size = new Size(215, 23);
             txtPassword.TabIndex = 4;
-            txtPassword.Text = "Enter Password";
             txtPassword.TextChanged += textBox2_TextChanged;
             // 
             // label4
@@ -220,9 +220,9 @@
             roundedTextBox2.Multiline = true;
             roundedTextBox2.Name = "roundedTextBox2";
             roundedTextBox2.PasswordChar = '*';
+            roundedTextBox2.PlaceholderText = "Enter Password";
             roundedTextBox2.Size = new Size(203, 23);
             roundedTextBox2.TabIndex = 5;
-            roundedTextBox2.Text = "Enter Password";
             roundedTextBox2.TextChanged += roundedTextBox2_TextChanged;
             // 
             // roundedTextBox1
@@ -233,9 +233,9 @@
             roundedTextBox1.Location = new Point(62, 127);
             roundedTextBox1.Multiline = true;
             roundedTextBox1.Name = "roundedTextBox1";
+            roundedTextBox1.PlaceholderText = "Enter username";
             roundedTextBox1.Size = new Size(203, 23);
             roundedTextBox1.TabIndex = 10;
-            roundedTextBox1.Text = "Enter username";
             roundedTextBox1.TextChanged += roundedTextBox1_TextChanged;
             // 
             // pictureBox3
