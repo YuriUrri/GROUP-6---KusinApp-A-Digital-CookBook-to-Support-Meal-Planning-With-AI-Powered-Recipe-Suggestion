@@ -9,27 +9,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using DotNetEnv;
 
 namespace KusinApp
 {
     public partial class RecipeDisplay : Form
     {
-
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
-        string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
+
+
+        private string strConn;
 
         private string recipeName;
         private string recipeIngredients;
         private string recipeSteps;
+
         public RecipeDisplay(string name, string ingredients, string steps)
         {
             InitializeComponent();
-
-
             recipeName = name;
             recipeIngredients = ingredients;
             recipeSteps = steps;
+
+            Env.Load();
+            strConn = Environment.GetEnvironmentVariable("DB_CONNECTION");
         }
 
         private void RecipeDisplay_Load(object sender, EventArgs e)
@@ -37,18 +41,28 @@ namespace KusinApp
             recipeNameLabel.Text = recipeName;
             recipeIngredientsLabel.Text = recipeIngredients;
             recipeStepsLabel.Text = recipeSteps;
+            AdjustRecipeLayout();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void AdjustRecipeLayout()
         {
-            MainPage mainPage = new MainPage();
-            mainPage.Show();
-            this.Hide();
-        }
+            int padding = 10;
+            int panelWidth = recipeDetailPanel.ClientSize.Width - 2 * padding;
 
-        private void recipeIngredientsLabel_Click(object sender, EventArgs e)
-        {
+            recipeNameLabel.MaximumSize = new Size(panelWidth, 0);
+            recipeNameLabel.AutoSize = true;
+            recipeNameLabel.Location = new Point(padding, padding);
 
+            recipeIngredientsLabel.MaximumSize = new Size(panelWidth, 0);
+            recipeIngredientsLabel.AutoSize = true;
+            recipeIngredientsLabel.Location = new Point(padding, recipeNameLabel.Bottom + padding);
+
+            recipeStepsLabel.MaximumSize = new Size(panelWidth, 0);
+            recipeStepsLabel.AutoSize = true;
+            recipeStepsLabel.Location = new Point(padding, recipeIngredientsLabel.Bottom + padding);
+
+            int totalContentHeight = recipeStepsLabel.Bottom + padding;
+            recipeDetailPanel.AutoScrollMinSize = new Size(0, totalContentHeight);
         }
     }
 }

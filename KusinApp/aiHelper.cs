@@ -27,7 +27,7 @@ namespace KusinApp
         {
             Env.Load();
             apiKey = Environment.GetEnvironmentVariable("key"); //not being retrieved properly yet - to be fixed
-            MessageBox.Show("API Key loaded: " + (string.IsNullOrEmpty(apiKey) ? "No" : "Yes"));
+            //MessageBox.Show("API Key loaded: " + (string.IsNullOrEmpty(apiKey) ? "No" : "Yes"));
         }
 
         public async Task<string> GetRecipeSuggestionAI(string availableIngredients)
@@ -44,9 +44,9 @@ namespace KusinApp
             var recipes = string.Join("\n", dt.AsEnumerable().Select(row => $"- {row["recipe_name"]}: {row["recipe_ingredient_list"]}"));
 
             //Debugging info
-            MessageBox.Show(
-            $"=== DEBUG ===\n\nAvailable Ingredients:\n{availableIngredients}\n\nRecipes:\n{recipes.Substring(0, Math.Min(recipes.Length, 1000))}...",
-            "AI Debug Info");
+            //MessageBox.Show(
+            //$"=== DEBUG ===\n\nAvailable Ingredients:\n{availableIngredients}\n\nRecipes:\n{recipes.Substring(0, Math.Min(recipes.Length, 1000))}...",
+            //"AI Debug Info");
 
 
             string prompt =
@@ -99,7 +99,7 @@ namespace KusinApp
                 string result = await response.Content.ReadAsStringAsync();
 
                 // Debugging output
-                MessageBox.Show(result, "Gemini Raw Response");
+                //MessageBox.Show(result, "Gemini Raw Response");
 
                 //  Gemini response
                 JObject parsed = JObject.Parse(result);
