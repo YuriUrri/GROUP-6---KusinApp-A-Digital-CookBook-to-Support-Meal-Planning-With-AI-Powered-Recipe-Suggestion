@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -22,14 +21,11 @@ namespace KusinApp
 
         private readonly string strConn;
 
-
         public SQLHelper()
         {
             try
             {
-                
                 Env.Load();
-
                 strConn = Environment.GetEnvironmentVariable("DB_CONNECTION");
 
                 if (string.IsNullOrEmpty(strConn))
@@ -251,6 +247,49 @@ namespace KusinApp
             return dt;
         }
 
+        public bool UserExists(string username)
+        {
+            string query = "SELECT COUNT(*) FROM kusinapp.user_login WHERE username = @username;";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking username: " + ex.Message);
+                return false;
+            }
+        }
 
+        public void RegisterUser(string username, string password)
+        {
+            string query = "INSERT INTO kusinapp.user_login (username, password) VALUES (@username, @password);";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username.Trim());
+                        cmd.Parameters.AddWithValue("@password", password.Trim());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error registering user: " + ex.Message);
+            }
+        }
     }
 }
