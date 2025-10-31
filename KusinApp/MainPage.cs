@@ -10,11 +10,14 @@ namespace KusinApp
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
         aiHelper aiHelper = new aiHelper();
-        string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
+
+        private readonly string strConn;
         public MainPage()
         {
             InitializeComponent();
-
+            Env.Load();
+            strConn = Environment.GetEnvironmentVariable("DB_CONNECTION");
+            
 
         }
 

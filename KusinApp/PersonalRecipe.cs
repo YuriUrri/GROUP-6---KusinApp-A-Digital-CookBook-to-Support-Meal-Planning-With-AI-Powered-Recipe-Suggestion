@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DotNetEnv;
 
 namespace KusinApp
 {
@@ -16,10 +17,12 @@ namespace KusinApp
         MainPage main = new MainPage();
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
-        string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=defaultdb;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
+        string strConn;
         public PersonalRecipe()
         {
             InitializeComponent();
+            Env.Load();
+            strConn = Environment.GetEnvironmentVariable("DB_CONNECTION");
 
         }
 
