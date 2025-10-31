@@ -145,7 +145,7 @@ namespace KusinApp
             addButton1.FlatAppearance.BorderSize = 0;
             addButton1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             addButton1.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            addButton1.FlatStyle = FlatStyle.Flat;
+            addButton1.FlatStyle = FlatStyle.Popup;
             addButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             addButton1.ForeColor = Color.FromArgb(0, 48, 73);
             addButton1.Location = new Point(258, 48);
@@ -188,7 +188,7 @@ namespace KusinApp
             searchPanel.Controls.Add(recipeListView);
             searchPanel.Controls.Add(label1);
             searchPanel.Controls.Add(label3);
-            searchPanel.Location = new Point(373, 132);
+            searchPanel.Location = new Point(5, 131);
             searchPanel.Margin = new Padding(2, 1, 2, 1);
             searchPanel.Name = "searchPanel";
             searchPanel.Size = new Size(338, 429);
@@ -318,7 +318,7 @@ namespace KusinApp
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
-            ClientSize = new Size(722, 659);
+            ClientSize = new Size(340, 659);
             Controls.Add(pictureBox2);
             Controls.Add(logoutButton1);
             Controls.Add(navBar1);
