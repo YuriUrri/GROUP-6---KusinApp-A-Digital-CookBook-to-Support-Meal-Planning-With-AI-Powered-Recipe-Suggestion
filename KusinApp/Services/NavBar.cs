@@ -10,7 +10,6 @@ namespace KusinApp.Components
     public class NavBar : UserControl
     {
         private int iconSize = 40;
-        private int cornerRadius = 40;
 
         private readonly Image[] icons = new Image[3];
 
@@ -38,9 +37,6 @@ namespace KusinApp.Components
             this.MouseMove += NavBar_MouseMove;
             this.MouseLeave += NavBar_MouseLeave;
             this.MouseDown += NavBar_MouseDown;
-
-            this.Resize += (s, e) => { UpdateRegion(); this.Invalidate(); };
-            UpdateRegion();
         }
 
         private Image ByteArrayToImage(byte[] bytes)
@@ -151,39 +147,35 @@ namespace KusinApp.Components
             int w = this.Width;
             int h = this.Height;
 
-            using (GraphicsPath path = CreateTopRoundedPath(new Rectangle(0, 0, w, h), cornerRadius))
+            // Fill base rectangle
+            using (Brush bBase = new SolidBrush(baseColor))
+                e.Graphics.FillRectangle(bBase, 0, 0, w, h);
+
+            // Draw section shading
+            int sectionW = w / 3;
+            for (int i = 0; i < 3; i++)
             {
-                e.Graphics.SetClip(path);
-                using (Brush bBase = new SolidBrush(baseColor))
-                    e.Graphics.FillPath(bBase, path);
-
-                int sectionW = w / 3;
-                for (int i = 0; i < 3; i++)
+                Rectangle secRect = new Rectangle(i * sectionW, 0, sectionW, h);
+                float shade = 0f;
+                switch (states[i])
                 {
-                    Rectangle secRect = new Rectangle(i * sectionW, 0, sectionW, h);
-                    float shade = 0f;
-                    switch (states[i])
-                    {
-                        case IconState.Normal: shade = 0f; break;
-                        case IconState.Hover: shade = 0.12f; break;
-                        case IconState.Selected: shade = 0.18f; break;
-                    }
-                    Color secCol = BlendWithBlack(baseColor, shade);
-                    using (Brush b = new SolidBrush(secCol))
-                        e.Graphics.FillRectangle(b, secRect);
+                    case IconState.Normal: shade = 0f; break;
+                    case IconState.Hover: shade = 0.12f; break;
+                    case IconState.Selected: shade = 0.18f; break;
                 }
-
-                e.Graphics.ResetClip();
+                Color secCol = BlendWithBlack(baseColor, shade);
+                using (Brush b = new SolidBrush(secCol))
+                    e.Graphics.FillRectangle(b, secRect);
             }
 
-            int sectionWidth = w / 3;
+            // Draw icons
             for (int i = 0; i < 3; i++)
             {
                 double scale = (states[i] == IconState.Normal) ? 0.8 : 1.0;
                 int drawW = (int)Math.Round(iconSize * scale);
                 int drawH = (int)Math.Round(iconSize * scale);
 
-                int centerX = i * sectionWidth + sectionWidth / 2;
+                int centerX = i * sectionW + sectionW / 2;
                 int centerY = h / 2;
 
                 Rectangle drawRect = new Rectangle(centerX - drawW / 2, centerY - drawH / 2, drawW, drawH);
@@ -202,36 +194,6 @@ namespace KusinApp.Components
             int g = (int)Math.Round(c.G * (1 - factor));
             int b = (int)Math.Round(c.B * (1 - factor));
             return Color.FromArgb(r, g, b);
-        }
-
-        private GraphicsPath CreateTopRoundedPath(Rectangle rect, int radius)
-        {
-            var path = new GraphicsPath();
-            int diameter = radius * 2;
-
-            if (radius > 0) path.AddArc(rect.Left, rect.Top, diameter, diameter, 180, 90);
-            else path.AddLine(rect.Left, rect.Top, rect.Left, rect.Top);
-
-            path.AddLine(rect.Left + radius, rect.Top, rect.Right - radius, rect.Top);
-
-            if (radius > 0) path.AddArc(rect.Right - diameter, rect.Top, diameter, diameter, 270, 90);
-            else path.AddLine(rect.Right, rect.Top, rect.Right, rect.Top);
-
-            path.AddLine(rect.Right, rect.Top + radius, rect.Right, rect.Bottom);
-            path.AddLine(rect.Right, rect.Bottom, rect.Left, rect.Bottom);
-            path.AddLine(rect.Left, rect.Bottom, rect.Left, rect.Top + radius);
-
-            path.CloseFigure();
-            return path;
-        }
-
-        private void UpdateRegion()
-        {
-            using (GraphicsPath path = CreateTopRoundedPath(new Rectangle(0, 0, this.Width, this.Height), cornerRadius))
-            {
-                this.Region?.Dispose();
-                this.Region = new Region(path);
-            }
         }
     }
 }
