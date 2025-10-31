@@ -73,6 +73,16 @@ namespace KusinApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] home {
             get {
                 object obj = ResourceManager.GetObject("home", resourceCulture);
@@ -106,16 +116,6 @@ namespace KusinApp.Properties {
         internal static byte[] shopping_bag {
             get {
                 object obj = ResourceManager.GetObject("shopping-bag", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] x {
-            get {
-                object obj = ResourceManager.GetObject("x", resourceCulture);
                 return ((byte[])(obj));
             }
         }

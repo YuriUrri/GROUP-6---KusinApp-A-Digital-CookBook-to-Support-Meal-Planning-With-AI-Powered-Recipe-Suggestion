@@ -32,7 +32,6 @@ namespace KusinApp
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
-            SearchRecipeButton = new KusinApp.Services.RoundedButton();
             itemList = new ListBox();
             label2 = new Label();
             recipeSuggestionBox = new ListView();
@@ -60,21 +59,6 @@ namespace KusinApp
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
-            // 
-            // SearchRecipeButton
-            // 
-            SearchRecipeButton.BackColor = Color.FromArgb(247, 127, 0);
-            SearchRecipeButton.CornerRadius = 15;
-            SearchRecipeButton.FlatStyle = FlatStyle.Flat;
-            SearchRecipeButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            SearchRecipeButton.ForeColor = Color.FromArgb(0, 48, 73);
-            SearchRecipeButton.Location = new Point(240, 101);
-            SearchRecipeButton.Name = "SearchRecipeButton";
-            SearchRecipeButton.Size = new Size(79, 23);
-            SearchRecipeButton.TabIndex = 4;
-            SearchRecipeButton.Text = "SEARCH";
-            SearchRecipeButton.UseVisualStyleBackColor = true;
-            SearchRecipeButton.Click += button3_Click;
             // 
             // itemList
             // 
@@ -299,7 +283,7 @@ namespace KusinApp
             searchBox.Location = new Point(62, 101);
             searchBox.Name = "searchBox";
             searchBox.PlaceholderText = "Search Recipes";
-            searchBox.Size = new Size(172, 23);
+            searchBox.Size = new Size(202, 23);
             searchBox.TabIndex = 24;
             searchBox.TextChanged += searchBox_TextChanged_1;
             // 
@@ -342,7 +326,6 @@ namespace KusinApp
             Controls.Add(searchBox);
             Controls.Add(pictureBox1);
             Controls.Add(searchPanel);
-            Controls.Add(SearchRecipeButton);
             Controls.Add(defaultPanel);
             ForeColor = Color.FromArgb(0, 48, 73);
             FormBorderStyle = FormBorderStyle.None;
@@ -362,7 +345,6 @@ namespace KusinApp
         }
 
         #endregion
-        private KusinApp.Services.RoundedButton SearchRecipeButton;
         private ListBox itemList;
         private Label label2;
         private ListView recipeSuggestionBox;

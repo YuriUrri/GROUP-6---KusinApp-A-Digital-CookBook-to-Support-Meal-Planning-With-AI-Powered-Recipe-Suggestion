@@ -40,13 +40,6 @@ namespace KusinApp
 
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            MainPage mainPage = new MainPage();
-            mainPage.Show();
-            this.Hide();
-        }
-
         private void recipeIngredientsLabel_Click(object sender, EventArgs e)
         {
 

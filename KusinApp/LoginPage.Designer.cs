@@ -30,19 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPage));
             label1 = new Label();
-            txtUsername = new KusinApp.Services.RoundedTextBox();
-            txtPassword = new KusinApp.Services.RoundedTextBox();
+            txtUsername = new TextBox();
+            txtPassword = new TextBox();
             label4 = new Label();
             label5 = new Label();
-            loginButton = new KusinApp.Services.RoundedButton();
-            registerButton = new KusinApp.Services.RoundedButton();
+            loginButton = new Button();
+            registerButton = new Button();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             panel1 = new Panel();
-            pictureBox4 = new PictureBox();
-            roundedButton1 = new KusinApp.Services.RoundedButton();
-            roundedTextBox2 = new KusinApp.Services.RoundedTextBox();
-            roundedTextBox1 = new KusinApp.Services.RoundedTextBox();
+            closeButton1 = new KusinApp.Components.CloseButton();
+            roundedButton1 = new Button();
+            roundedTextBox2 = new TextBox();
+            roundedTextBox1 = new TextBox();
             pictureBox3 = new PictureBox();
             label6 = new Label();
             label3 = new Label();
@@ -50,7 +50,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
@@ -67,42 +66,31 @@
             // txtUsername
             // 
             txtUsername.BackColor = Color.White;
-            txtUsername.BorderStyle = BorderStyle.None;
-            txtUsername.CornerRadius = 10;
-            txtUsername.Font = new Font("Segoe UI", 10F);
+            txtUsername.Font = new Font("Segoe UI", 9F);
             txtUsername.ForeColor = Color.Gray;
-            txtUsername.LeftMargin = 20;
-            txtUsername.Location = new Point(61, 290);
+            txtUsername.Location = new Point(66, 290);
             txtUsername.Margin = new Padding(2, 1, 2, 1);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
-            txtUsername.PlaceholderColor = Color.Gray;
-            txtUsername.PlaceholderText = "Enter Username";
-            txtUsername.Size = new Size(220, 23);
+            txtUsername.Size = new Size(215, 23);
             txtUsername.TabIndex = 3;
             txtUsername.Text = "Enter Username";
-            txtUsername.TopPadding = 15;
             txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // txtPassword
             // 
             txtPassword.BackColor = Color.White;
-            txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.CornerRadius = 10;
-            txtPassword.Font = new Font("Segoe UI", 10F);
+            txtPassword.Font = new Font("Segoe UI", 9F);
             txtPassword.ForeColor = Color.Gray;
-            txtPassword.LeftMargin = 20;
-            txtPassword.Location = new Point(61, 376);
+            txtPassword.Location = new Point(66, 376);
             txtPassword.Margin = new Padding(2, 1, 2, 1);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.PlaceholderColor = Color.Gray;
-            txtPassword.PlaceholderText = "Enter Password";
-            txtPassword.Size = new Size(220, 23);
+            txtPassword.Size = new Size(215, 23);
             txtPassword.TabIndex = 4;
             txtPassword.Text = "Enter Password";
-            txtPassword.TopPadding = 6;
+            txtPassword.UseSystemPasswordChar = true;
             txtPassword.TextChanged += textBox2_TextChanged;
             // 
             // label4
@@ -110,7 +98,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             label4.ForeColor = Color.FromArgb(0, 48, 73);
-            label4.Location = new Point(66, 338);
+            label4.Location = new Point(61, 338);
             label4.Margin = new Padding(2, 0, 5, 0);
             label4.Name = "label4";
             label4.Size = new Size(101, 28);
@@ -135,8 +123,7 @@
             // 
             loginButton.BackColor = Color.FromArgb(247, 127, 0);
             loginButton.BackgroundImageLayout = ImageLayout.Zoom;
-            loginButton.CornerRadius = 20;
-            loginButton.FlatStyle = FlatStyle.Flat;
+            loginButton.FlatStyle = FlatStyle.Popup;
             loginButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             loginButton.ForeColor = Color.FromArgb(0, 48, 73);
             loginButton.Location = new Point(128, 417);
@@ -144,16 +131,15 @@
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(81, 29);
             loginButton.TabIndex = 8;
-            loginButton.Text = "Login";
+            loginButton.Text = "LOGIN";
             loginButton.UseVisualStyleBackColor = false;
             loginButton.Click += button1_Click;
             // 
             // registerButton
             // 
             registerButton.BackColor = Color.White;
-            registerButton.CornerRadius = 20;
             registerButton.FlatAppearance.BorderSize = 0;
-            registerButton.FlatStyle = FlatStyle.Flat;
+            registerButton.FlatStyle = FlatStyle.Popup;
             registerButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             registerButton.ForeColor = Color.FromArgb(0, 48, 73);
             registerButton.Location = new Point(128, 467);
@@ -161,7 +147,7 @@
             registerButton.Name = "registerButton";
             registerButton.Size = new Size(81, 30);
             registerButton.TabIndex = 9;
-            registerButton.Text = "Register";
+            registerButton.Text = "REGISTER";
             registerButton.UseVisualStyleBackColor = false;
             registerButton.Click += registerButton_Click;
             // 
@@ -187,7 +173,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(pictureBox4);
+            panel1.Controls.Add(closeButton1);
             panel1.Controls.Add(roundedButton1);
             panel1.Controls.Add(roundedTextBox2);
             panel1.Controls.Add(roundedTextBox1);
@@ -202,70 +188,55 @@
             panel1.Visible = false;
             panel1.Paint += panel1_Paint;
             // 
-            // pictureBox4
+            // closeButton1
             // 
-            pictureBox4.Cursor = Cursors.Hand;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(291, 21);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(25, 24);
-            pictureBox4.TabIndex = 7;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
+            closeButton1.BackColor = Color.Transparent;
+            closeButton1.Location = new Point(275, 20);
+            closeButton1.Name = "closeButton1";
+            closeButton1.Size = new Size(38, 38);
+            closeButton1.TabIndex = 7;
             // 
             // roundedButton1
             // 
             roundedButton1.BackColor = Color.FromArgb(247, 127, 0);
-            roundedButton1.CornerRadius = 15;
             roundedButton1.Cursor = Cursors.Hand;
             roundedButton1.FlatAppearance.BorderSize = 0;
             roundedButton1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             roundedButton1.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            roundedButton1.FlatStyle = FlatStyle.Flat;
-            roundedButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            roundedButton1.FlatStyle = FlatStyle.Popup;
+            roundedButton1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             roundedButton1.ForeColor = Color.White;
-            roundedButton1.Location = new Point(120, 257);
+            roundedButton1.Location = new Point(120, 265);
             roundedButton1.Name = "roundedButton1";
-            roundedButton1.Size = new Size(81, 30);
+            roundedButton1.Size = new Size(79, 30);
             roundedButton1.TabIndex = 6;
             roundedButton1.Text = "REGISTER";
             roundedButton1.UseVisualStyleBackColor = false;
             // 
             // roundedTextBox2
             // 
-            roundedTextBox2.BorderStyle = BorderStyle.None;
-            roundedTextBox2.CornerRadius = 10;
             roundedTextBox2.Cursor = Cursors.IBeam;
             roundedTextBox2.ForeColor = Color.Gray;
-            roundedTextBox2.LeftMargin = 20;
             roundedTextBox2.Location = new Point(62, 206);
             roundedTextBox2.Multiline = true;
             roundedTextBox2.Name = "roundedTextBox2";
             roundedTextBox2.PasswordChar = '*';
-            roundedTextBox2.PlaceholderColor = Color.Gray;
-            roundedTextBox2.PlaceholderText = "Enter text...";
             roundedTextBox2.Size = new Size(203, 23);
             roundedTextBox2.TabIndex = 5;
-            roundedTextBox2.Text = "Enter text...";
-            roundedTextBox2.TopPadding = 6;
+            roundedTextBox2.Text = "Enter Password";
             roundedTextBox2.TextChanged += roundedTextBox2_TextChanged;
             // 
             // roundedTextBox1
             // 
-            roundedTextBox1.BorderStyle = BorderStyle.None;
-            roundedTextBox1.CornerRadius = 10;
             roundedTextBox1.Cursor = Cursors.IBeam;
             roundedTextBox1.ForeColor = Color.Gray;
-            roundedTextBox1.LeftMargin = 20;
+            roundedTextBox1.ImeMode = ImeMode.Off;
             roundedTextBox1.Location = new Point(62, 127);
             roundedTextBox1.Multiline = true;
             roundedTextBox1.Name = "roundedTextBox1";
-            roundedTextBox1.PlaceholderColor = Color.Gray;
-            roundedTextBox1.PlaceholderText = "Enter username";
             roundedTextBox1.Size = new Size(203, 23);
-            roundedTextBox1.TabIndex = 4;
+            roundedTextBox1.TabIndex = 10;
             roundedTextBox1.Text = "Enter username";
-            roundedTextBox1.TopPadding = 6;
             roundedTextBox1.TextChanged += roundedTextBox1_TextChanged;
             // 
             // pictureBox3
@@ -283,7 +254,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label6.ForeColor = Color.FromArgb(0, 48, 73);
-            label6.Location = new Point(62, 169);
+            label6.Location = new Point(59, 169);
             label6.Name = "label6";
             label6.Size = new Size(87, 19);
             label6.TabIndex = 2;
@@ -316,7 +287,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
-            ClientSize = new Size(340, 590);
+            ClientSize = new Size(342, 590);
             Controls.Add(panel1);
             Controls.Add(pictureBox1);
             Controls.Add(registerButton);
@@ -337,7 +308,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -346,22 +316,22 @@
         #endregion
 
         private Label label1;
-        private KusinApp.Services.RoundedTextBox txtUsername;
-        private KusinApp.Services.RoundedTextBox txtPassword;
+        private TextBox txtUsername;
+        private TextBox txtPassword;
         private Label label4;
         private Label label5;
-        private KusinApp.Services.RoundedButton loginButton;
-        private KusinApp.Services.RoundedButton registerButton;
+        private Button loginButton;
+        private Button registerButton;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Panel panel1;
         private Label label2;
-        private Services.RoundedTextBox roundedTextBox1;
+        private TextBox roundedTextBox1;
         private PictureBox pictureBox3;
         private Label label6;
         private Label label3;
-        private Services.RoundedTextBox roundedTextBox2;
-        private PictureBox pictureBox4;
-        private Services.RoundedButton roundedButton1;
+        private TextBox roundedTextBox2;
+        private Button roundedButton1;
+        private Components.CloseButton closeButton1;
     }
 }

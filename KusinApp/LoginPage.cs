@@ -151,7 +151,7 @@ namespace KusinApp
             timer.Start();
         }
 
-        private void HidePanel()
+        public void HidePanel()
         {
             int targetHeight = 379;
             int step = 20;
@@ -175,13 +175,6 @@ namespace KusinApp
         private void roundedTextBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            HidePanel();
-            roundedTextBox1.Clear();
-            roundedTextBox2.Clear();
         }
 
         private void roundedTextBox2_TextChanged(object sender, EventArgs e)
