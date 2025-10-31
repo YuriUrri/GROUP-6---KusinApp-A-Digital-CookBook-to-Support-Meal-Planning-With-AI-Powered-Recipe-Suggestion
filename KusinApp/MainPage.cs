@@ -321,6 +321,8 @@ namespace KusinApp
 
             insertIngredient(ingredient, ingredientID, userID, quantity);
             LoadUserInventory();
+            ingBox.Clear();
+            textBox1.Clear();
         }
 
         private void roundedTextBox1_TextChanged(object sender, EventArgs e)
@@ -337,28 +339,6 @@ namespace KusinApp
         {
 
         }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            MainPage main = new MainPage();
-            main.Show();
-            this.Hide();
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            Inventory inv = new Inventory();
-            inv.Show();
-            this.Hide();
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            PersonalRecipe recipe = new PersonalRecipe();
-            recipe.Show();
-            this.Hide();
-        }
-
 
 
         private void ingIncrementer_Load(object sender, EventArgs e)
@@ -445,6 +425,29 @@ namespace KusinApp
                 LoadRecipes(searchBox.Text.Trim());
                 //aiHelper.aiSuggest(AIReccomendationView);
             }
+        }
+
+        private void navBar1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutButton1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ingBox_TextChanged_1(object sender, EventArgs e)
+        {
+            ingIncrementer.ValueChanged += (s, val) =>
+            {
+                textBox1.Text = val.ToString();
+            };
         }
     }
 }

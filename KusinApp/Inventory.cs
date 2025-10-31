@@ -117,6 +117,8 @@ namespace KusinApp
         private void button4_Click(object sender, EventArgs e)
         {
             updateInventory();
+            nameTextBox.Clear();
+            quantityTextBox.Clear();
         }
 
         private void updateInventory()
@@ -195,40 +197,12 @@ namespace KusinApp
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            LoginPage login = new LoginPage();
-            login.Show();
-            this.Hide();
-        }
-
         private void incrementerButton1_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            MainPage main = new MainPage();
-            main.Show();
-            this.Hide();
-        }
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            PersonalRecipe recipe = new PersonalRecipe();
-            recipe.Show();
-            this.Hide();
-        }
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            Inventory inv = new Inventory();
-            inv.Show();
-            this.Hide();
+            incrementerButton1.ValueChanged += (s, val) =>
+            {
+                quantityTextBox.Text = val.ToString();
+            };
         }
     }
 

@@ -20,9 +20,9 @@ namespace KusinApp
         public PersonalRecipe()
         {
             InitializeComponent();
-            
+
         }
-        
+
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -43,25 +43,9 @@ namespace KusinApp
 
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void navBar1_Load(object sender, EventArgs e)
         {
-            MainPage mainPage = new MainPage();
-            mainPage.Show();
-            this.Hide();
-        }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            PersonalRecipe recipe = new PersonalRecipe();
-            recipe.Show();
-            this.Hide();
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            Inventory inventory = new Inventory();
-            inventory.Show();
-            this.Hide();
         }
     }
 }
