@@ -140,16 +140,6 @@ namespace KusinApp
         }
 
 
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            PersonalRecipe recipe = new PersonalRecipe();
-            recipe.Show();
-            this.Hide();
-
-        }
-
-
         private string GetIngredientID(string ingredientName)
         {
             string query = "SELECT ingredient_id FROM kusinapp.ingredient_list WHERE ingredient_name = @name LIMIT 1";

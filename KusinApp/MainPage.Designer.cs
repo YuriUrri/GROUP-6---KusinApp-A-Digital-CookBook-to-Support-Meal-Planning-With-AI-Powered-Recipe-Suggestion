@@ -32,7 +32,6 @@ namespace KusinApp
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
-            SearchRecipeButton = new KusinApp.Services.RoundedButton();
             itemList = new ListBox();
             label2 = new Label();
             recipeSuggestionBox = new ListView();
@@ -40,7 +39,7 @@ namespace KusinApp
             defaultPanel = new Panel();
             textBox1 = new TextBox();
             ingBox = new TextBox();
-            addButton1 = new KusinApp.Services.RoundedButton();
+            addButton1 = new Button();
             ingIncrementer = new KusinApp.Services.IncrementerButton();
             label4 = new Label();
             searchPanel = new Panel();
@@ -60,21 +59,6 @@ namespace KusinApp
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
-            // 
-            // SearchRecipeButton
-            // 
-            SearchRecipeButton.BackColor = Color.FromArgb(247, 127, 0);
-            SearchRecipeButton.CornerRadius = 15;
-            SearchRecipeButton.FlatStyle = FlatStyle.Flat;
-            SearchRecipeButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            SearchRecipeButton.ForeColor = Color.FromArgb(0, 48, 73);
-            SearchRecipeButton.Location = new Point(240, 101);
-            SearchRecipeButton.Name = "SearchRecipeButton";
-            SearchRecipeButton.Size = new Size(79, 23);
-            SearchRecipeButton.TabIndex = 4;
-            SearchRecipeButton.Text = "SEARCH";
-            SearchRecipeButton.UseVisualStyleBackColor = true;
-            SearchRecipeButton.Click += button3_Click;
             // 
             // itemList
             // 
@@ -141,7 +125,7 @@ namespace KusinApp
             textBox1.ForeColor = Color.FromArgb(0, 48, 73);
             textBox1.Location = new Point(187, 49);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(36, 23);
+            textBox1.Size = new Size(31, 23);
             textBox1.TabIndex = 24;
             textBox1.Text = "0";
             textBox1.TextAlign = HorizontalAlignment.Center;
@@ -158,11 +142,10 @@ namespace KusinApp
             // addButton1
             // 
             addButton1.BackColor = Color.FromArgb(247, 127, 0);
-            addButton1.CornerRadius = 15;
             addButton1.FlatAppearance.BorderSize = 0;
             addButton1.FlatAppearance.MouseDownBackColor = Color.Transparent;
             addButton1.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            addButton1.FlatStyle = FlatStyle.Flat;
+            addButton1.FlatStyle = FlatStyle.Popup;
             addButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             addButton1.ForeColor = Color.FromArgb(0, 48, 73);
             addButton1.Location = new Point(258, 48);
@@ -296,10 +279,10 @@ namespace KusinApp
             // 
             // searchBox
             // 
-            searchBox.Location = new Point(62, 101);
+            searchBox.Location = new Point(55, 101);
             searchBox.Name = "searchBox";
             searchBox.PlaceholderText = "Search Recipes";
-            searchBox.Size = new Size(172, 23);
+            searchBox.Size = new Size(264, 23);
             searchBox.TabIndex = 24;
             searchBox.TextChanged += searchBox_TextChanged_1;
             // 
@@ -324,9 +307,10 @@ namespace KusinApp
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(27, 101);
+            pictureBox2.Location = new Point(26, 101);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(29, 24);
+            pictureBox2.Size = new Size(23, 23);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 27;
             pictureBox2.TabStop = false;
             // 
@@ -335,14 +319,13 @@ namespace KusinApp
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 191, 73);
-            ClientSize = new Size(339, 659);
+            ClientSize = new Size(340, 659);
             Controls.Add(pictureBox2);
             Controls.Add(logoutButton1);
             Controls.Add(navBar1);
             Controls.Add(searchBox);
             Controls.Add(pictureBox1);
             Controls.Add(searchPanel);
-            Controls.Add(SearchRecipeButton);
             Controls.Add(defaultPanel);
             ForeColor = Color.FromArgb(0, 48, 73);
             FormBorderStyle = FormBorderStyle.None;
@@ -362,7 +345,6 @@ namespace KusinApp
         }
 
         #endregion
-        private KusinApp.Services.RoundedButton SearchRecipeButton;
         private ListBox itemList;
         private Label label2;
         private ListView recipeSuggestionBox;
@@ -372,7 +354,7 @@ namespace KusinApp
         private Label label3;
         private Label label4;
         private PictureBox pictureBox1;
-        private Services.RoundedButton addButton1;
+        private Button addButton1;
         private Services.IncrementerButton ingIncrementer;
         private Label label1;
         private ListView AIReccomendationView;

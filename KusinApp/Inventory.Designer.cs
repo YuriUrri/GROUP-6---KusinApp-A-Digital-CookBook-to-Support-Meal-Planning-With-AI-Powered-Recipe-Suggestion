@@ -34,7 +34,7 @@
             nameTextBox = new TextBox();
             quantityTextBox = new TextBox();
             label1 = new Label();
-            updateButton = new KusinApp.Services.RoundedButton();
+            updateButton = new Button();
             pictureBox1 = new PictureBox();
             incrementerButton1 = new KusinApp.Services.IncrementerButton();
             navBar1 = new KusinApp.Components.NavBar();
@@ -90,10 +90,10 @@
             // quantityTextBox
             // 
             quantityTextBox.ForeColor = Color.FromArgb(0, 48, 73);
-            quantityTextBox.Location = new Point(140, 135);
+            quantityTextBox.Location = new Point(146, 135);
             quantityTextBox.Multiline = true;
             quantityTextBox.Name = "quantityTextBox";
-            quantityTextBox.Size = new Size(36, 23);
+            quantityTextBox.Size = new Size(30, 23);
             quantityTextBox.TabIndex = 24;
             quantityTextBox.Text = "0";
             quantityTextBox.TextAlign = HorizontalAlignment.Center;
@@ -111,9 +111,8 @@
             // updateButton
             // 
             updateButton.BackColor = Color.FromArgb(247, 127, 0);
-            updateButton.CornerRadius = 15;
             updateButton.Cursor = Cursors.Hand;
-            updateButton.FlatStyle = FlatStyle.Flat;
+            updateButton.FlatStyle = FlatStyle.Popup;
             updateButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             updateButton.ForeColor = Color.FromArgb(0, 48, 73);
             updateButton.Location = new Point(31, 135);
@@ -196,7 +195,7 @@
         private TextBox nameTextBox;
         private TextBox quantityTextBox;
         private Label label1;
-        private KusinApp.Services.RoundedButton updateButton;
+        private Button updateButton;
         private PictureBox pictureBox1;
         private Services.IncrementerButton incrementerButton1;
         private Components.NavBar navBar1;
