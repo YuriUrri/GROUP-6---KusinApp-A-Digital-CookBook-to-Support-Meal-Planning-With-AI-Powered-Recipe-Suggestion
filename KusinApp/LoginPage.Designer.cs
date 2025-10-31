@@ -90,7 +90,6 @@
             txtPassword.Size = new Size(215, 23);
             txtPassword.TabIndex = 4;
             txtPassword.Text = "Enter Password";
-            txtPassword.UseSystemPasswordChar = true;
             txtPassword.TextChanged += textBox2_TextChanged;
             // 
             // label4

@@ -279,10 +279,10 @@ namespace KusinApp
             // 
             // searchBox
             // 
-            searchBox.Location = new Point(62, 101);
+            searchBox.Location = new Point(55, 101);
             searchBox.Name = "searchBox";
             searchBox.PlaceholderText = "Search Recipes";
-            searchBox.Size = new Size(257, 23);
+            searchBox.Size = new Size(264, 23);
             searchBox.TabIndex = 24;
             searchBox.TextChanged += searchBox_TextChanged_1;
             // 
@@ -307,9 +307,10 @@ namespace KusinApp
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(27, 101);
+            pictureBox2.Location = new Point(26, 101);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(29, 24);
+            pictureBox2.Size = new Size(23, 23);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 27;
             pictureBox2.TabStop = false;
             // 

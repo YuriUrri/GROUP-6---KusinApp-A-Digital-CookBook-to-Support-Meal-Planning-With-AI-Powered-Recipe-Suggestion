@@ -90,10 +90,10 @@
             // quantityTextBox
             // 
             quantityTextBox.ForeColor = Color.FromArgb(0, 48, 73);
-            quantityTextBox.Location = new Point(140, 135);
+            quantityTextBox.Location = new Point(146, 135);
             quantityTextBox.Multiline = true;
             quantityTextBox.Name = "quantityTextBox";
-            quantityTextBox.Size = new Size(36, 23);
+            quantityTextBox.Size = new Size(30, 23);
             quantityTextBox.TabIndex = 24;
             quantityTextBox.Text = "0";
             quantityTextBox.TextAlign = HorizontalAlignment.Center;
