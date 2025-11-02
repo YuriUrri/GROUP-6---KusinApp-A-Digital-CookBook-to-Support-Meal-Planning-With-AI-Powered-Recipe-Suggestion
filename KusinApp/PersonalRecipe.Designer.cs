@@ -92,16 +92,18 @@
             // 
             // inputRecipeBox
             // 
+            inputRecipeBox.AcceptsReturn = true;
             inputRecipeBox.AllowDrop = true;
             inputRecipeBox.BorderStyle = BorderStyle.None;
-            inputRecipeBox.Location = new Point(11, 51);
+            inputRecipeBox.Location = new Point(17, 53);
             inputRecipeBox.Multiline = true;
             inputRecipeBox.Name = "inputRecipeBox";
             inputRecipeBox.PlaceholderText = "Input Steps";
             inputRecipeBox.ScrollBars = ScrollBars.Vertical;
-            inputRecipeBox.Size = new Size(280, 270);
+            inputRecipeBox.Size = new Size(274, 270);
             inputRecipeBox.TabIndex = 13;
-            inputRecipeBox.TextChanged += textBox1_TextChanged;
+            inputRecipeBox.Text = "Step 1:\r\n   ";
+            inputRecipeBox.KeyDown += inputRecipeBox_KeyDown;
             // 
             // updateButton
             // 
@@ -124,7 +126,7 @@
             addRecipeButton.FlatStyle = FlatStyle.Popup;
             addRecipeButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             addRecipeButton.ForeColor = Color.FromArgb(0, 48, 73);
-            addRecipeButton.Location = new Point(149, 376);
+            addRecipeButton.Location = new Point(166, 376);
             addRecipeButton.Name = "addRecipeButton";
             addRecipeButton.Size = new Size(75, 23);
             addRecipeButton.TabIndex = 17;
@@ -139,9 +141,9 @@
             deleteRecipeButton.FlatStyle = FlatStyle.Popup;
             deleteRecipeButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             deleteRecipeButton.ForeColor = Color.FromArgb(0, 48, 73);
-            deleteRecipeButton.Location = new Point(106, 376);
+            deleteRecipeButton.Location = new Point(171, 22);
             deleteRecipeButton.Name = "deleteRecipeButton";
-            deleteRecipeButton.Size = new Size(75, 23);
+            deleteRecipeButton.Size = new Size(56, 23);
             deleteRecipeButton.TabIndex = 18;
             deleteRecipeButton.Text = "DELETE";
             deleteRecipeButton.UseVisualStyleBackColor = true;
@@ -152,9 +154,9 @@
             showPersonalRecipeView.Columns.AddRange(new ColumnHeader[] { displayPersonalRecipe });
             showPersonalRecipeView.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             showPersonalRecipeView.GridLines = true;
-            showPersonalRecipeView.Location = new Point(10, 51);
+            showPersonalRecipeView.Location = new Point(17, 63);
             showPersonalRecipeView.Name = "showPersonalRecipeView";
-            showPersonalRecipeView.Size = new Size(280, 309);
+            showPersonalRecipeView.Size = new Size(273, 319);
             showPersonalRecipeView.TabIndex = 19;
             showPersonalRecipeView.UseCompatibleStateImageBehavior = false;
             showPersonalRecipeView.View = View.Details;
@@ -169,13 +171,13 @@
             // 
             titleBox.AllowDrop = true;
             titleBox.BorderStyle = BorderStyle.None;
-            titleBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleBox.Location = new Point(11, 12);
+            titleBox.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            titleBox.Location = new Point(17, 14);
             titleBox.Multiline = true;
             titleBox.Name = "titleBox";
             titleBox.PlaceholderText = "Recipe Title";
             titleBox.ScrollBars = ScrollBars.Vertical;
-            titleBox.Size = new Size(280, 33);
+            titleBox.Size = new Size(274, 33);
             titleBox.TabIndex = 20;
             titleBox.TextChanged += titleBox_TextChanged;
             // 
@@ -184,12 +186,12 @@
             ingredientInputBox.AllowDrop = true;
             ingredientInputBox.BorderStyle = BorderStyle.None;
             ingredientInputBox.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ingredientInputBox.Location = new Point(11, 327);
+            ingredientInputBox.Location = new Point(17, 329);
             ingredientInputBox.Multiline = true;
             ingredientInputBox.Name = "ingredientInputBox";
             ingredientInputBox.PlaceholderText = "Input Ingredients";
             ingredientInputBox.ScrollBars = ScrollBars.Vertical;
-            ingredientInputBox.Size = new Size(280, 33);
+            ingredientInputBox.Size = new Size(274, 33);
             ingredientInputBox.TabIndex = 21;
             ingredientInputBox.TextChanged += ingredientInputBox_TextChanged;
             // 
@@ -213,9 +215,9 @@
             viewRecipesButton.FlatStyle = FlatStyle.Popup;
             viewRecipesButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             viewRecipesButton.ForeColor = Color.FromArgb(0, 48, 73);
-            viewRecipesButton.Location = new Point(50, 405);
+            viewRecipesButton.Location = new Point(68, 405);
             viewRecipesButton.Name = "viewRecipesButton";
-            viewRecipesButton.Size = new Size(191, 23);
+            viewRecipesButton.Size = new Size(173, 23);
             viewRecipesButton.TabIndex = 23;
             viewRecipesButton.Text = "VIEW PERSONAL RECIPES";
             viewRecipesButton.UseVisualStyleBackColor = true;
@@ -240,7 +242,7 @@
             backButton.FlatStyle = FlatStyle.Popup;
             backButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             backButton.ForeColor = Color.FromArgb(0, 48, 73);
-            backButton.Location = new Point(86, 405);
+            backButton.Location = new Point(85, 405);
             backButton.Name = "backButton";
             backButton.Size = new Size(123, 23);
             backButton.TabIndex = 24;
@@ -255,9 +257,9 @@
             selectButton.FlatStyle = FlatStyle.Popup;
             selectButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             selectButton.ForeColor = Color.FromArgb(0, 48, 73);
-            selectButton.Location = new Point(215, 22);
+            selectButton.Location = new Point(233, 22);
             selectButton.Name = "selectButton";
-            selectButton.Size = new Size(75, 23);
+            selectButton.Size = new Size(57, 23);
             selectButton.TabIndex = 23;
             selectButton.Text = "SELECT";
             selectButton.UseVisualStyleBackColor = true;
@@ -268,13 +270,13 @@
             titleShowBox.AllowDrop = true;
             titleShowBox.BorderStyle = BorderStyle.None;
             titleShowBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleShowBox.Location = new Point(10, 22);
+            titleShowBox.Location = new Point(17, 22);
             titleShowBox.Multiline = true;
             titleShowBox.Name = "titleShowBox";
             titleShowBox.PlaceholderText = "Recipe Title";
             titleShowBox.ReadOnly = true;
             titleShowBox.ScrollBars = ScrollBars.Vertical;
-            titleShowBox.Size = new Size(199, 23);
+            titleShowBox.Size = new Size(148, 23);
             titleShowBox.TabIndex = 22;
             titleShowBox.TextChanged += textBox1_TextChanged_1;
             // 
