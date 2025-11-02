@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DotNetEnv;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KusinApp
 {
@@ -33,7 +34,6 @@ namespace KusinApp
 
             LoadUserRecipes();
             LoadPersonalRecipes();
-
         }
 
         private void LoadUserRecipes()
@@ -103,6 +103,31 @@ namespace KusinApp
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void inputRecipeBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; 
+
+                int stepCount = inputRecipeBox.Lines.Count(line => line.StartsWith("Step"));
+
+                inputRecipeBox.AppendText($"\r\nStep {stepCount + 1}:\r\n   ");
+
+                inputRecipeBox.SelectionStart = inputRecipeBox.Text.Length;
+            }
+            else if (e.KeyCode != Keys.Left && e.KeyCode != Keys.Right && e.KeyCode != Keys.Up && e.KeyCode != Keys.Down)
+            {
+                int currentLine = inputRecipeBox.GetLineFromCharIndex(inputRecipeBox.SelectionStart);
+                string lineText = inputRecipeBox.Lines[currentLine];
+
+                if (lineText.StartsWith("Step"))
+                {
+                    e.SuppressKeyPress = true;
+                    inputRecipeBox.SelectionStart = inputRecipeBox.Text.Length;
+                }
+            }
         }
 
         private void addRecipeButton_Click(object sender, EventArgs e)
@@ -298,6 +323,8 @@ namespace KusinApp
                                 titleBox.Text = selectedTitle;
                                 ingredientInputBox.Text = reader["personal_recipe_ingredients"].ToString();
                                 inputRecipeBox.Text = reader["personal_recipe_steps"].ToString();
+
+                                inputRecipePanel.BringToFront();
                             }
                             else
                             {
@@ -322,6 +349,9 @@ namespace KusinApp
         {
             showRecipePanel.BringToFront();
             showRecipePanel.Visible = true;
+            titleBox.Clear();
+            inputRecipeBox.Text = "Step 1:\r\n   ";
+            inputRecipeBox.SelectionStart = inputRecipeBox.Text.Length;
         }
 
         private void backButton_Click(object sender, EventArgs e)
