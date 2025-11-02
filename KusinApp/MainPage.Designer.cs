@@ -44,6 +44,7 @@ namespace KusinApp
             label4 = new Label();
             searchPanel = new Panel();
             AIReccomendationView = new ListView();
+            AiRecipes = new ColumnHeader();
             recipeListView = new ListView();
             recipeColumn = new ColumnHeader();
             label1 = new Label();
@@ -53,7 +54,6 @@ namespace KusinApp
             navBar1 = new KusinApp.Components.NavBar();
             logoutButton1 = new KusinApp.Components.LogoutButton();
             pictureBox2 = new PictureBox();
-            AiRecipes = new ColumnHeader();
             defaultPanel.SuspendLayout();
             searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -188,10 +188,10 @@ namespace KusinApp
             searchPanel.Controls.Add(recipeListView);
             searchPanel.Controls.Add(label1);
             searchPanel.Controls.Add(label3);
-            searchPanel.Location = new Point(5, 131);
+            searchPanel.Location = new Point(3, 132);
             searchPanel.Margin = new Padding(2, 1, 2, 1);
             searchPanel.Name = "searchPanel";
-            searchPanel.Size = new Size(338, 429);
+            searchPanel.Size = new Size(340, 429);
             searchPanel.TabIndex = 15;
             searchPanel.Visible = false;
             searchPanel.Paint += searchPanel_Paint;
@@ -213,6 +213,11 @@ namespace KusinApp
             AIReccomendationView.UseCompatibleStateImageBehavior = false;
             AIReccomendationView.View = View.Details;
             AIReccomendationView.SelectedIndexChanged += AIReccomendationView_SelectedIndexChanged;
+            // 
+            // AiRecipes
+            // 
+            AiRecipes.Text = "Recipe Name";
+            AiRecipes.Width = 400;
             // 
             // recipeListView
             // 
@@ -308,11 +313,6 @@ namespace KusinApp
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 27;
             pictureBox2.TabStop = false;
-            // 
-            // AiRecipes
-            // 
-            AiRecipes.Text = "Recipe Name";
-            AiRecipes.Width = 400;
             // 
             // MainPage
             // 

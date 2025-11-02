@@ -204,9 +204,9 @@ namespace KusinApp
                         int rowsAffected = updateCmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
-                            MessageBox.Show("✅ Inventory updated successfully!");
+                            MessageBox.Show("Inventory updated successfully!");
                         else
-                            MessageBox.Show("⚠️ No matching inventory item found for update.");
+                            MessageBox.Show("No matching inventory item found for update.");
                     }
                 }
 

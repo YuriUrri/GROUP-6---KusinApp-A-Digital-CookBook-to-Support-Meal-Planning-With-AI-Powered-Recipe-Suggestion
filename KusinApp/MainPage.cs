@@ -28,7 +28,7 @@ namespace KusinApp
             SetupAutoComplete();
             help.dbConnection();
             LoadRecipes();
-            aiHelper.aiSuggest(recipeSuggestionBox);
+            //aiHelper.aiSuggest(recipeSuggestionBox);
 
         }
 
@@ -421,7 +421,7 @@ namespace KusinApp
             {
                 showPanel();
                 LoadRecipes(searchBox.Text.Trim());
-                aiHelper.aiSuggest(AIReccomendationView);
+                //aiHelper.aiSuggest(AIReccomendationView);
             }
         }
 
