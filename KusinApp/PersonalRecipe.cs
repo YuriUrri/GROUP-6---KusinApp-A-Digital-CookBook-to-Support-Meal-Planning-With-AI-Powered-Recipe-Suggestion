@@ -107,27 +107,35 @@ namespace KusinApp
 
         private void inputRecipeBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                e.SuppressKeyPress = true; 
-
-                int stepCount = inputRecipeBox.Lines.Count(line => line.StartsWith("Step"));
-
-                inputRecipeBox.AppendText($"\r\nStep {stepCount + 1}:\r\n   ");
-
-                inputRecipeBox.SelectionStart = inputRecipeBox.Text.Length;
-            }
-            else if (e.KeyCode != Keys.Left && e.KeyCode != Keys.Right && e.KeyCode != Keys.Up && e.KeyCode != Keys.Down)
-            {
-                int currentLine = inputRecipeBox.GetLineFromCharIndex(inputRecipeBox.SelectionStart);
-                string lineText = inputRecipeBox.Lines[currentLine];
-
-                if (lineText.StartsWith("Step"))
+                if (e.KeyCode == Keys.Enter)
                 {
                     e.SuppressKeyPress = true;
+
+                    int stepCount = inputRecipeBox.Lines.Count(line => line.StartsWith("Step"));
+
+                    inputRecipeBox.AppendText($"\r\nStep {stepCount + 1}:\r\n   ");
+
                     inputRecipeBox.SelectionStart = inputRecipeBox.Text.Length;
                 }
+                else if (e.KeyCode != Keys.Left && e.KeyCode != Keys.Right && e.KeyCode != Keys.Up && e.KeyCode != Keys.Down)
+                {
+                    int currentLine = inputRecipeBox.GetLineFromCharIndex(inputRecipeBox.SelectionStart);
+                    string lineText = inputRecipeBox.Lines[currentLine];
+
+                    if (lineText.StartsWith("Step"))
+                    {
+                        e.SuppressKeyPress = true;
+                        inputRecipeBox.SelectionStart = inputRecipeBox.Text.Length;
+                    }
+                }
             }
+            catch(Exception ex)
+            {
+                return;
+            }
+            
         }
 
         private void addRecipeButton_Click(object sender, EventArgs e)
