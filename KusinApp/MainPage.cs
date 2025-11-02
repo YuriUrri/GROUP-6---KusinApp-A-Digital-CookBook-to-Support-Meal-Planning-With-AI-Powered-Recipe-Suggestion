@@ -209,9 +209,13 @@ namespace KusinApp
 
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e) //recipe suggestion box
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e) 
         {
-            searchBox.Text = recipeSuggestionBox.SelectedItems[0].Text;
+            if (recipeSuggestionBox.SelectedItems.Count > 0)
+            {
+                searchBox.Text = recipeSuggestionBox.SelectedItems[0].Text;
+                
+            }
         }
 
 
@@ -394,7 +398,11 @@ namespace KusinApp
 
         private void AIReccomendationView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            searchBox.Text = AIReccomendationView.SelectedItems[0].Text;
+            
+            if (AIReccomendationView.SelectedItems.Count > 0)
+            {
+                searchBox.Text = AIReccomendationView.SelectedItems[0].Text;
+            }
         }
 
         private void MainPage_Click(object sender, EventArgs e)
@@ -405,9 +413,6 @@ namespace KusinApp
 
         private void searchBox_TextChanged_1(object sender, EventArgs e)
         {
-            if (searchBox.Focused == false)
-                return;
-
             if (string.IsNullOrWhiteSpace(searchBox.Text))
             {
                 showDefault();

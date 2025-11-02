@@ -26,7 +26,7 @@ namespace KusinApp
         {
             InitializeComponent();
 
-            
+
             Env.Load();
 
             string dbConnection = Environment.GetEnvironmentVariable("DB_CONNECTION");
@@ -43,7 +43,7 @@ namespace KusinApp
 
             help.dbConnection();
 
-            
+
             this.AcceptButton = loginButton;
         }
 
@@ -61,7 +61,7 @@ namespace KusinApp
 
         }
 
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
@@ -102,7 +102,7 @@ namespace KusinApp
             }
         }
 
-        
+
         public string GetID()
         {
             return LoggedInId;
@@ -142,7 +142,7 @@ namespace KusinApp
         {
         }
 
-        
+
         private void ShowPanel()
         {
             int targetHeight = 379;
@@ -178,7 +178,7 @@ namespace KusinApp
             timer.Start();
         }
 
-        
+
         public void HidePanel()
         {
             int targetHeight = 379;
@@ -209,5 +209,45 @@ namespace KusinApp
         {
 
         }
+
+        private void roundedButton1_Click(object sender, EventArgs e)
+        {
+            string username = roundedTextBox1.Text.Trim();
+            string password = roundedTextBox2.Text.Trim();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter both username and password.", "Input Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                // Check if username already exists
+                if (help.UserExists(username))
+                {
+                    MessageBox.Show("Username already exists. Please choose another one.",
+                        "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Register the new user
+                help.RegisterUser(username, password);
+
+                MessageBox.Show("Registration successful!",
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                HidePanel(); // hide registration panel after success
+                roundedTextBox1.Clear();
+                roundedTextBox2.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred during registration: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
