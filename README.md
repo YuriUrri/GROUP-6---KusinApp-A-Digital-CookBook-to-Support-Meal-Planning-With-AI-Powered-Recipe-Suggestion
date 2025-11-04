@@ -62,11 +62,6 @@ KusinApp
 
 └── README.md              # Project documentation
 
-💡 Significance of the Study
-
-KusinApp serves as a modern solution to common kitchen challenges while preserving Filipino food culture. It promotes sustainability by helping users manage ingredients efficiently and plan meals mindfully. The system encourages healthier eating habits and empowers users to enhance their culinary skills through technology.
-
-Moreover, KusinApp demonstrates how computer science principles and artificial intelligence integration can be applied to address everyday household problems. By bridging technology and tradition, it fosters innovation in digital domestic solutions, supporting sustainable and intelligent food management for modern Filipino households.
 
 👩‍💻 Authors
 
