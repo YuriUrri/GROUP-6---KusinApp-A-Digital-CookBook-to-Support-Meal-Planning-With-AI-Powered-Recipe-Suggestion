@@ -328,7 +328,7 @@ namespace KusinApp
 
         private void updateButton_Click_1(object sender, EventArgs e)
         {
-            string userId = help.GetUserID(login.GetUser(), login.GetPass());
+            string userID = help.GetUserID(login.GetUser(), login.GetPass());
             string title = titleBox.Text.Trim();
             string ingredients = ingredientInputBox.Text.Trim();
             string steps = inputRecipeBox.Text.Trim();
@@ -338,12 +338,15 @@ namespace KusinApp
                 using (var conn = new MySqlConnection(strConn))
                 {
                     conn.Open();
-                    string sql = $"UPDATE kusinapp.personal_recipe (user_id, personal_recipe_name, personal_recipe_ingredients, personal_recipe_steps) VALUES (@userId, @name, @ingredients, @steps)";
-                    help.SQLManager(sql);
+                    string sql = @" UPDATE kusinapp.personal_recipe 
+                    SET personal_recipe_name = @name,
+                    personal_recipe_ingredients = @ingredients,
+                    personal_recipe_steps = @steps
+                    WHERE user_id = @userID"; 
 
                     using (var cmd = new MySqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@userID", userId);
+                        cmd.Parameters.AddWithValue("@userID", userID);
                         cmd.Parameters.AddWithValue("@name", title);
                         cmd.Parameters.AddWithValue("@ingredients", ingredients);
                         cmd.Parameters.AddWithValue("@steps", steps);
