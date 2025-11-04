@@ -1,5 +1,8 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DotNetEnv;
+using Microsoft.VisualBasic.ApplicationServices;
+using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DotNetEnv;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KusinApp
@@ -31,7 +34,6 @@ namespace KusinApp
                 MessageBox.Show("Database connection string is missing. Check your .env file.");
                 return;
             }
-
             LoadUserRecipes();
             LoadPersonalRecipes();
         }
@@ -75,34 +77,37 @@ namespace KusinApp
                 MessageBox.Show("Error loading recipes: " + ex.Message);
             }
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void LoadPersonalRecipes()
         {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    string query = "SELECT personal_recipe_name FROM kusinapp.personal_recipe WHERE user_id = @user_id";
 
-        }
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", login.GetID());
 
-        private void button3_Click(object sender, EventArgs e)
-        {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            showPersonalRecipeView.Items.Clear();
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RecipeSearch_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void navBar1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+                            while (reader.Read())
+                            {
+                                string recipeTitle = reader["personal_recipe_name"].ToString();
+                                ListViewItem item = new ListViewItem(recipeTitle);
+                                showPersonalRecipeView.Items.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading personal recipes: " + ex.Message);
+            }
         }
 
         private void inputRecipeBox_KeyDown(object sender, KeyEventArgs e)
@@ -131,11 +136,11 @@ namespace KusinApp
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return;
             }
-            
+
         }
 
         private void addRecipeButton_Click(object sender, EventArgs e)
@@ -245,11 +250,6 @@ namespace KusinApp
             inputRecipeBox.Clear();
         }
 
-        private void titleBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (showPersonalRecipeView.SelectedItems.Count == 0)
@@ -261,44 +261,6 @@ namespace KusinApp
 
             titleShowBox.Text = selectedTitle;
         }
-
-        private void LoadPersonalRecipes()
-        {
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(strConn))
-                {
-                    conn.Open();
-                    string query = "SELECT personal_recipe_name FROM kusinapp.personal_recipe WHERE user_id = @user_id";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@user_id", login.GetID());
-
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            showPersonalRecipeView.Items.Clear();
-
-                            while (reader.Read())
-                            {
-                                string recipeTitle = reader["personal_recipe_name"].ToString();
-                                ListViewItem item = new ListViewItem(recipeTitle);
-                                showPersonalRecipeView.Items.Add(item);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading personal recipes: " + ex.Message);
-            }
-        }
-        private void ingredientInputBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void selectButton_Click(object sender, EventArgs e)
         {
             string selectedTitle = titleShowBox.Text.Trim();
@@ -348,11 +310,6 @@ namespace KusinApp
             }
         }
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void viewRecipesButton_Click(object sender, EventArgs e)
         {
             showRecipePanel.BringToFront();
@@ -367,5 +324,51 @@ namespace KusinApp
             inputRecipePanel.BringToFront();
             inputRecipePanel.Visible = true;
         }
+
+
+        private void updateButton_Click_1(object sender, EventArgs e)
+        {
+            string userId = help.GetUserID(login.GetUser(), login.GetPass());
+            string title = titleBox.Text.Trim();
+            string ingredients = ingredientInputBox.Text.Trim();
+            string steps = inputRecipeBox.Text.Trim();
+
+            try
+            {
+                using (var conn = new MySqlConnection(strConn))
+                {
+                    conn.Open();
+                    string sql = $"UPDATE kusinapp.personal_recipe (user_id, personal_recipe_name, personal_recipe_ingredients, personal_recipe_steps) VALUES (@userId, @name, @ingredients, @steps)";
+                    help.SQLManager(sql);
+
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userID", userId);
+                        cmd.Parameters.AddWithValue("@name", title);
+                        cmd.Parameters.AddWithValue("@ingredients", ingredients);
+                        cmd.Parameters.AddWithValue("@steps", steps);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding recipe: " + ex.Message);
+            }
+
+            LoadPersonalRecipes();
+            LoadUserRecipes();
+        }
+
+        private void ingredientInputBox_TextChanged(object sender, EventArgs e) { }
+        private void titleBox_TextChanged(object sender, EventArgs e) { }
+        private void textBox1_TextChanged_1(object sender, EventArgs e) { }
+        private void button1_Click(object sender, EventArgs e) { }
+
+        private void button2_Click(object sender, EventArgs e) { }
+        private void button3_Click(object sender, EventArgs e) { }
+        private void RecipeSearch_Load(object sender, EventArgs e) { }
+        private void navBar1_Load(object sender, EventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
     }
 }

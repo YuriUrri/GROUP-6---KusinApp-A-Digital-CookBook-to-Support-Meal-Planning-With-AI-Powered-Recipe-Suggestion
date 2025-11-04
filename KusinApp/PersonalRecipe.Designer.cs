@@ -118,6 +118,7 @@
             updateButton.TabIndex = 16;
             updateButton.Text = "UPDATE";
             updateButton.UseVisualStyleBackColor = true;
+            updateButton.Click += updateButton_Click_1;
             // 
             // addRecipeButton
             // 

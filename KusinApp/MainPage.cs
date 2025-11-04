@@ -10,6 +10,7 @@ namespace KusinApp
         SQLHelper help = new SQLHelper();
         LoginPage login = new LoginPage();
         aiHelper aiHelper = new aiHelper();
+        private Panel lastActivePanel;
 
         private readonly string strConn;
         public MainPage()
@@ -17,11 +18,8 @@ namespace KusinApp
             InitializeComponent();
             Env.Load();
             strConn = Environment.GetEnvironmentVariable("DB_CONNECTION");
-            
-
         }
 
-        private Panel lastActivePanel;
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadUserInventory();
@@ -131,18 +129,6 @@ namespace KusinApp
             }
         }
 
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
         private string GetIngredientID(string ingredientName)
         {
             string query = "SELECT ingredient_id FROM kusinapp.ingredient_list WHERE ingredient_name = @name LIMIT 1";
@@ -198,17 +184,6 @@ namespace KusinApp
             }
         }
 
-
-        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e) 
         {
             if (recipeSuggestionBox.SelectedItems.Count > 0)
@@ -218,30 +193,8 @@ namespace KusinApp
             }
         }
 
-
-
-        private void searchBox_TextChanged(object sender, EventArgs e)
-        {
-            //if (string.IsNullOrEmpty(searchBox.Text))
-            //{
-            //    showDefault();
-            //}
-            //else
-            //{
-            //    showPanel();
-            //    LoadRecipes(searchBox.Text.Trim());
-            //    aiHelper.aiSuggest(AIReccomendationView);
-
-
-        }
-
-
         private void showPanel()
         {
-            //lastActivePanel = defaultPanel;
-            //searchPanel.Visible = true;
-            //searchPanel.BringToFront();
-            //defaultPanel.Visible = false;
             if (!searchPanel.Visible)
             {
                 searchPanel.Visible = true;
@@ -251,22 +204,14 @@ namespace KusinApp
         }
         private void showDefault()
         {
-            //defaultPanel.Visible = true;
-            //defaultPanel.BringToFront();
-            //searchPanel.Visible = false;
-            //ingBox.BringToFront();
-
-            if (!defaultPanel.Visible)
-            {
+           if (!defaultPanel.Visible)
+           {
                 defaultPanel.Visible = true;
                 searchPanel.Visible = false;
                 defaultPanel.BringToFront();
-            }
-
-            // Ensure ingBox is clickable and on top
+           }
             ingBox.BringToFront();
             ingBox.Focus();
-
         }
 
 
@@ -277,10 +222,6 @@ namespace KusinApp
             this.Hide();
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void roundedButton1_Click(object sender, EventArgs e)
         {
@@ -306,7 +247,6 @@ namespace KusinApp
                 return;
             }
 
-
             string ingredientID = GetIngredientID(ingredient);
 
             if (string.IsNullOrEmpty(ingredientID))
@@ -315,56 +255,15 @@ namespace KusinApp
                 return;
             }
 
-
             insertIngredient(ingredient, ingredientID, userID, quantity);
             LoadUserInventory();
             ingBox.Clear();
             textBox1.Clear();
         }
 
-        private void roundedTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void searchPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-        private void ingIncrementer_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ingBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void ShowRecipeDetails(string name, string ingredients, string steps)
-        {
-
-        }
-
         public void recipeListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             listViewClick((ListView)sender);
-
-
         }
 
         public void listViewClick(ListView listview)
@@ -388,7 +287,6 @@ namespace KusinApp
                     steps = selected.SubItems[2].Text;
             }
 
-
             // Open the recipe display window (or panel)
             RecipeDisplay display = new RecipeDisplay(recipeName, ingredients, steps);
             display.Show();
@@ -398,7 +296,6 @@ namespace KusinApp
 
         private void AIReccomendationView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             if (AIReccomendationView.SelectedItems.Count > 0)
             {
                 searchBox.Text = AIReccomendationView.SelectedItems[0].Text;
@@ -421,23 +318,8 @@ namespace KusinApp
             {
                 showPanel();
                 LoadRecipes(searchBox.Text.Trim());
-                //aiHelper.aiSuggest(AIReccomendationView);
+                aiHelper.aiSuggest(AIReccomendationView);
             }
-        }
-
-        private void navBar1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void logoutButton1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
         }
 
         private void ingBox_TextChanged_1(object sender, EventArgs e)
@@ -447,6 +329,24 @@ namespace KusinApp
                 textBox1.Text = val.ToString();
             };
         }
+
+
+        private void roundedTextBox1_TextChanged(object sender, EventArgs e) { }
+        private void label3_Click(object sender, EventArgs e) { }
+        private void searchPanel_Paint(object sender, PaintEventArgs e) { }
+        private void ingIncrementer_Load(object sender, EventArgs e) { }
+        private void label1_Click_1(object sender, EventArgs e) { }
+        private void ingBox_TextChanged(object sender, EventArgs e) { }
+        private void ShowRecipeDetails(string name, string ingredients, string steps) { }
+        private void navBar1_Load(object sender, EventArgs e) { }
+        private void logoutButton1_Load(object sender, EventArgs e) { }
+        private void textBox1_TextChanged_1(object sender, EventArgs e) { }
+        private void searchBox_TextChanged(object sender, EventArgs e) { }
+        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e) { }
+        private void label2_Click(object sender, EventArgs e) { }
+        private void label4_Click(object sender, EventArgs e) { }
+        private void button2_Click(object sender, EventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
     }
 }
 

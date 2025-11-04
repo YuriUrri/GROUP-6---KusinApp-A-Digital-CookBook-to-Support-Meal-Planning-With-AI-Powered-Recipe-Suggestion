@@ -26,8 +26,6 @@ namespace KusinApp
             strConn = Environment.GetEnvironmentVariable("DB_CONNECTION");
         }
 
-        
-
         private void button1_Click(object sender, EventArgs e)
         {
             MainPage main = new MainPage();
@@ -38,7 +36,6 @@ namespace KusinApp
 
         private void Inventory_Load_1(object sender, EventArgs e)
         {
-
             help.dbConnection();
             LoadUserInventory();
             invShowView.SelectedIndexChanged += invShowView_SelectedIndexChanged;
@@ -58,7 +55,6 @@ namespace KusinApp
 
             DataTable dt = help.GetUserInventory(userID);
 
-            
             invShowView.View = View.Details;
             invShowView.FullRowSelect = true;
             invShowView.GridLines = true;
@@ -81,15 +77,6 @@ namespace KusinApp
                 invShowView.Items.Add(item);
             }
         }
-
-
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void inventorySearch_TextChanged(object sender, EventArgs e)
         {
             searchIngredient();
@@ -119,16 +106,6 @@ namespace KusinApp
                 item.SubItems.Add(quantity);
                 invShowView.Items.Add(item);
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -275,12 +252,10 @@ namespace KusinApp
                 if (confirm == DialogResult.No)
                     return;
 
-                using (MySql.Data.MySqlClient.MySqlConnection conn =
-                       new MySql.Data.MySqlClient.MySqlConnection(strConn))
+                using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(strConn))
                 {
                     conn.Open();
 
-                   
                     string getIdQuery = "SELECT ingredient_id FROM ingredient_list WHERE ingredient_name = @name LIMIT 1";
                     string ingredientID = "";
 
@@ -327,6 +302,9 @@ namespace KusinApp
             }
         }
 
+        private void button2_Click(object sender, EventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+        private void textBox2_TextChanged(object sender, EventArgs e) { }
     }
 }
 
