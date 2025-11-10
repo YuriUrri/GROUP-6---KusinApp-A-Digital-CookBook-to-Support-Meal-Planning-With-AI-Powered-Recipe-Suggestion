@@ -44,7 +44,7 @@ namespace KusinApp
             label4 = new Label();
             searchPanel = new Panel();
             AIReccomendationView = new ListView();
-            Recipes = new ColumnHeader();
+            AiRecipes = new ColumnHeader();
             recipeListView = new ListView();
             recipeColumn = new ColumnHeader();
             label1 = new Label();
@@ -188,10 +188,10 @@ namespace KusinApp
             searchPanel.Controls.Add(recipeListView);
             searchPanel.Controls.Add(label1);
             searchPanel.Controls.Add(label3);
-            searchPanel.Location = new Point(5, 131);
+            searchPanel.Location = new Point(3, 132);
             searchPanel.Margin = new Padding(2, 1, 2, 1);
             searchPanel.Name = "searchPanel";
-            searchPanel.Size = new Size(338, 429);
+            searchPanel.Size = new Size(340, 429);
             searchPanel.TabIndex = 15;
             searchPanel.Visible = false;
             searchPanel.Paint += searchPanel_Paint;
@@ -201,7 +201,7 @@ namespace KusinApp
             AIReccomendationView.AccessibleName = "";
             AIReccomendationView.AllowColumnReorder = true;
             AIReccomendationView.BorderStyle = BorderStyle.None;
-            AIReccomendationView.Columns.AddRange(new ColumnHeader[] { Recipes });
+            AIReccomendationView.Columns.AddRange(new ColumnHeader[] { AiRecipes });
             AIReccomendationView.Font = new Font("Segoe UI", 9F);
             AIReccomendationView.ForeColor = Color.FromArgb(0, 48, 73);
             AIReccomendationView.FullRowSelect = true;
@@ -214,10 +214,10 @@ namespace KusinApp
             AIReccomendationView.View = View.Details;
             AIReccomendationView.SelectedIndexChanged += AIReccomendationView_SelectedIndexChanged;
             // 
-            // Recipes
+            // AiRecipes
             // 
-            Recipes.Text = "Recipe Name";
-            Recipes.Width = 1000;
+            AiRecipes.Text = "Recipe Name";
+            AiRecipes.Width = 400;
             // 
             // recipeListView
             // 
@@ -359,14 +359,14 @@ namespace KusinApp
         private Label label1;
         private ListView AIReccomendationView;
         public ListView recipeListView;
-        private ColumnHeader recipeColumn;
         private TextBox ingBox;
-        private ColumnHeader Recipes;
         private ColumnHeader RecipeNameDefaultPanel;
         private TextBox searchBox;
         private Components.NavBar navBar1;
         private Components.LogoutButton logoutButton1;
         private TextBox textBox1;
         private PictureBox pictureBox2;
+        private ColumnHeader recipeColumn;
+        private ColumnHeader AiRecipes;
     }
 }

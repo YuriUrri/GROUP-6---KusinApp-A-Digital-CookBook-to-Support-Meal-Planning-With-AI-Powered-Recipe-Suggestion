@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
-    <PackageReference Include="MySql.Data" Version="9.4.0" />
+    <PackageReference Include="MySql.Data" Version="9.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Svg" Version="3.4.7" />
   </ItemGroup>
@@ -36,6 +36,9 @@
 
   <ItemGroup>
     <None Update=".env">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update=".gitignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

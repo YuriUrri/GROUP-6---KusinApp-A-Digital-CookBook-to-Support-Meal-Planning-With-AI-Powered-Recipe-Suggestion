@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DotNetEnv;
 using Svg;
-using System.Drawing;
 
 namespace KusinApp
 {
@@ -16,6 +16,8 @@ namespace KusinApp
     {
         SQLHelper help = new SQLHelper();
         string SQL = "";
+
+        // Store logged-in user info globally
         public static string LoggedInUser { get; private set; }
         public static string LoggedInPass { get; private set; }
         public static string LoggedInId { get; private set; }
@@ -23,7 +25,25 @@ namespace KusinApp
         public LoginPage()
         {
             InitializeComponent();
+
+
+            Env.Load();
+
+            string dbConnection = Environment.GetEnvironmentVariable("DB_CONNECTION");
+
+            if (string.IsNullOrEmpty(dbConnection))
+            {
+                return;
+            }
+            else
+            {
+                //MessageBox.Show("✅ DB_CONNECTION loaded successfully:\n" + dbConnection);
+            }
+
+
             help.dbConnection();
+
+
             this.AcceptButton = loginButton;
         }
 
@@ -35,10 +55,12 @@ namespace KusinApp
         private void label1_Click(object sender, EventArgs e)
         {
         }
+
         private void label4_Click(object sender, EventArgs e)
         {
 
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -47,20 +69,21 @@ namespace KusinApp
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-
                 MessageBox.Show("Please enter both username and password.", "Input Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-
             }
+
             try
             {
+                // ✅ Validate login using SQLHelper
                 if (help.ValidateLogin(username, password))
                 {
                     LoggedInUser = username;
                     LoggedInPass = password;
                     LoggedInId = help.GetUserID(username, password);
 
+                    // Proceed to MainPage
                     MainPage mainForm = new MainPage();
                     mainForm.Show();
                     this.DialogResult = DialogResult.OK;
@@ -68,28 +91,32 @@ namespace KusinApp
                 }
                 else
                 {
-                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Invalid username or password.", "Login Failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         public string GetID()
         {
             return LoggedInId;
         }
+
         public string GetUser()
         {
             return LoggedInUser;
         }
+
         public string GetPass()
         {
             return LoggedInPass;
         }
-
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -115,11 +142,11 @@ namespace KusinApp
         {
         }
 
+
         private void ShowPanel()
         {
             int targetHeight = 379;
             int radius = 20;
-
 
             panel1.Visible = true;
             panel1.Height = targetHeight;
@@ -151,6 +178,7 @@ namespace KusinApp
             timer.Start();
         }
 
+
         public void HidePanel()
         {
             int targetHeight = 379;
@@ -181,5 +209,45 @@ namespace KusinApp
         {
 
         }
+
+        private void roundedButton1_Click(object sender, EventArgs e)
+        {
+            string username = roundedTextBox1.Text.Trim();
+            string password = roundedTextBox2.Text.Trim();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter both username and password.", "Input Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                // Check if username already exists
+                if (help.UserExists(username))
+                {
+                    MessageBox.Show("Username already exists. Please choose another one.",
+                        "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Register the new user
+                help.RegisterUser(username, password);
+
+                MessageBox.Show("Registration successful!",
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                HidePanel(); // hide registration panel after success
+                roundedTextBox1.Clear();
+                roundedTextBox2.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred during registration: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
