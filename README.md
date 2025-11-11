@@ -4,7 +4,7 @@ A Smart Recipe Management System for Sustainable Filipino Cooking
 
 📖 Overview
 
-KusinApp is a desktop-based application developed to assist users in managing personal recipes while promoting sustainable cooking practices. The system allows users to register, log in, create, edit, and delete their own recipes. It aims to help individuals plan healthier meals, reduce food waste, and preserve Filipino culinary culture. The app also demonstrates how various programming paradigms—Object-Oriented, Imperative, Functional, and Logic—can be integrated within a single software system.
+KusinApp is a mobile-based application developed to assist users in managing personal recipes while promoting sustainable cooking practices. The system allows users to register, log in, create, edit, and delete their own recipes. It aims to help individuals plan healthier meals, reduce food waste, and preserve Filipino culinary culture. The app also demonstrates how various programming paradigms—Object-Oriented, Imperative, Functional, and Logic—can be integrated within a single software system.
 
 ⚙️ Features
 
