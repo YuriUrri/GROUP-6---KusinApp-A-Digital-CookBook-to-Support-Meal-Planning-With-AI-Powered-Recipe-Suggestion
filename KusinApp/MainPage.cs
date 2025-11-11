@@ -30,11 +30,6 @@ namespace KusinApp
 
         }
 
-        /**LoadRecipes @param searchTerm - method with optional search term
-         * 
-         * Displays recipes from the database into the list view.
-         * 
-         */
         private void LoadRecipes(string searchTerm = "")
         {
             string query = string.IsNullOrWhiteSpace(searchTerm)
@@ -318,7 +313,7 @@ namespace KusinApp
             {
                 showPanel();
                 LoadRecipes(searchBox.Text.Trim());
-                aiHelper.aiSuggest(AIReccomendationView);
+                //aiHelper.aiSuggest(AIReccomendationView);
             }
         }
 

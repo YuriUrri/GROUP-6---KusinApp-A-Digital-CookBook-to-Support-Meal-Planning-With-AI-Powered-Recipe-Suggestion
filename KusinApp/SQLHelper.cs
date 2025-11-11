@@ -16,8 +16,6 @@ namespace KusinApp
         private MySqlDataAdapter da;
         private DataTable dt;
 
-        //private string strConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=kusinapp;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
-        //private string strOtherConn = "Server=mysql-579981-urrijehan1-5156.b.aivencloud.com;Port=17519;Database=kusinapp;Uid=avnadmin;Pwd=AVNS_k5T1-B2oaaNzDgSDamX;SslMode=Required;";
 
         private readonly string strConn;
 
@@ -30,7 +28,7 @@ namespace KusinApp
 
                 if (string.IsNullOrEmpty(strConn))
                 {
-                    //MessageBox.Show("⚠️ Database connection string missing — check your .env file or Copy to Output Directory setting.");
+                    //MessageBox.Show("Database connection string missing — check your .env file or Copy to Output Directory setting.");
                     return;
                 }
             }
@@ -47,7 +45,7 @@ namespace KusinApp
                 using (dbConn = new MySqlConnection(strConn))
                 {
                     dbConn.Open();
-                    //MessageBox.Show("✅ Connection successful!");
+                    //MessageBox.Show("Connection successful!");
                 }
             }
             catch (Exception ex)
@@ -55,14 +53,6 @@ namespace KusinApp
                 return;
             }
         }
-
-        //public void dbConnection(string database)
-        //{
-        //    dbConn = new MySqlConnection(strOtherConn + database);
-        //    dbConn.Open();
-        //    MessageBox.Show("Test Connection successful");
-        //    dbConn.Close();
-        //}
 
         public DataTable displayRecords(string strQuery)
         {

@@ -329,6 +329,7 @@ namespace KusinApp
         private void updateButton_Click_1(object sender, EventArgs e)
         {
             string userID = help.GetUserID(login.GetUser(), login.GetPass());
+            string originalName = titleShowBox.Text.Trim(); // the recipe currently selected
             string title = titleBox.Text.Trim();
             string ingredients = ingredientInputBox.Text.Trim();
             string steps = inputRecipeBox.Text.Trim();
@@ -338,25 +339,28 @@ namespace KusinApp
                 using (var conn = new MySqlConnection(strConn))
                 {
                     conn.Open();
-                    string sql = @" UPDATE kusinapp.personal_recipe 
-                    SET personal_recipe_name = @name,
-                    personal_recipe_ingredients = @ingredients,
-                    personal_recipe_steps = @steps
-                    WHERE user_id = @userID"; 
+                    string sql = @"UPDATE kusinapp.personal_recipe 
+                           SET personal_recipe_name = @name,
+                               personal_recipe_ingredients = @ingredients,
+                               personal_recipe_steps = @steps
+                           WHERE user_id = @userID AND personal_recipe_name = @originalName";
 
                     using (var cmd = new MySqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@userID", userID);
+                        cmd.Parameters.AddWithValue("@originalName", originalName);
                         cmd.Parameters.AddWithValue("@name", title);
                         cmd.Parameters.AddWithValue("@ingredients", ingredients);
                         cmd.Parameters.AddWithValue("@steps", steps);
                         cmd.ExecuteNonQuery();
                     }
                 }
+
+                MessageBox.Show("Recipe updated successfully!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error adding recipe: " + ex.Message);
+                MessageBox.Show("Error updating recipe: " + ex.Message);
             }
 
             LoadPersonalRecipes();

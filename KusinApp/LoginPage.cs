@@ -76,14 +76,14 @@ namespace KusinApp
 
             try
             {
-                // ✅ Validate login using SQLHelper
+                //Validate login using SQLHelper
                 if (help.ValidateLogin(username, password))
                 {
                     LoggedInUser = username;
                     LoggedInPass = password;
                     LoggedInId = help.GetUserID(username, password);
 
-                    // Proceed to MainPage
+                    //Proceed to MainPage
                     MainPage mainForm = new MainPage();
                     mainForm.Show();
                     this.DialogResult = DialogResult.OK;
