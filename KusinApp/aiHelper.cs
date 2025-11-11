@@ -85,7 +85,7 @@ namespace KusinApp
                 string result = await response.Content.ReadAsStringAsync();
 
                 // Debugging output
-                MessageBox.Show(result, "Gemini Raw Response");
+                //MessageBox.Show(result, "Gemini Raw Response");
 
                 //  Gemini response
                 JObject parsed = JObject.Parse(result);
